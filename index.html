@@ -45,6 +45,40 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .sb-dasha-main{font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--gold);margin-bottom:2px;}
 .sb-dasha-sub{font-size:0.65rem;color:var(--text-dim);line-height:1.5;}
 .sb-note{font-size:0.65rem;color:var(--text-light);line-height:1.6;font-style:italic;}
+.sb-item{cursor:pointer;border-radius:5px;padding:2px 4px;margin:0 -4px 2px;transition:background 0.15s;}
+.sb-item:hover{background:rgba(192,144,48,0.08);}
+.sb-item:hover .sb-place{color:var(--gold-light);}
+.sb-hint{font-size:0.5rem;color:var(--text-light);text-align:center;margin-top:4px;letter-spacing:0.08em;opacity:0.7;}
+/* Planet explainer panel */
+.pex-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;align-items:center;justify-content:center;padding:20px;}
+.pex-overlay.open{display:flex;}
+.pex-card{background:var(--card);border-radius:16px;padding:28px 26px;max-width:480px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.7);border-top:3px solid var(--gold);}
+.pex-close{float:right;background:none;border:none;color:var(--text-light);font-size:1.2rem;cursor:pointer;line-height:1;margin-top:-4px;}
+.pex-glyph{font-size:1.6rem;margin-bottom:6px;}
+.pex-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);margin-bottom:2px;}
+.pex-coords{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.pex-what{font-size:0.72rem;color:var(--text-light);line-height:1.7;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.pex-you{font-size:0.82rem;color:var(--text-dim);line-height:1.85;}
+.pex-you strong{color:var(--crimson-light);font-weight:500;}
+.pex-nakshatra{background:var(--green-dark);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:0.73rem;color:var(--text-dim);line-height:1.7;border-left:2px solid var(--crimson-mid);}
+.pex-now{background:rgba(192,144,48,0.07);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:0.73rem;color:var(--text-dim);line-height:1.7;border-left:2px solid var(--gold);}
+/* Moon phase on calendar */
+.cal-day .day-moon{font-size:0.72rem;position:absolute;top:3px;right:4px;line-height:1;opacity:0.75;}
+.cal-day:hover .day-moon{opacity:1;}
+/* Glossary journey */
+.journey-section{margin-bottom:32px;}
+.journey-chapter{background:var(--card);border-radius:14px;padding:24px 26px;margin-bottom:14px;box-shadow:0 1px 8px var(--shadow);}
+.jc-num{font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;}
+.jc-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold);margin-bottom:10px;line-height:1.2;}
+.jc-body{font-size:0.82rem;color:var(--text-dim);line-height:1.9;margin-bottom:0;}
+.jc-body p{margin-bottom:10px;}
+.jc-body p:last-child{margin-bottom:0;}
+.jc-highlight{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text);font-style:italic;margin:14px 0;padding:12px 16px;border-left:2px solid var(--crimson-light);background:rgba(122,24,35,0.07);border-radius:0 8px 8px 0;}
+.jc-planet-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.jc-planet-chip{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:0.7rem;color:var(--text-dim);}
+.jc-planet-chip.active{border-color:var(--border-gold);color:var(--gold);}
+.jc-realtime{background:var(--green-dark);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:0.75rem;color:var(--text-dim);line-height:1.7;border-left:2px solid var(--gold);}
+.jc-realtime strong{color:var(--gold-light);}
 .today-btn{display:block;width:100%;background:var(--crimson);color:var(--text);border:none;border-radius:8px;padding:9px 12px;font-family:'Inter',sans-serif;font-size:0.73rem;font-weight:500;cursor:pointer;margin-top:14px;letter-spacing:0.04em;transition:background 0.2s;}
 .today-btn:hover{background:var(--crimson-mid);}
 .month-nav{margin-top:12px;}
@@ -154,25 +188,30 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   <div class="sb-tagline">Life Navigation Planner · 2026–2027</div>
   <div class="sb-section">
     <div class="sb-label">Vedic Chart · Libra Rising</div>
-    <div class="sb-item"><span class="sb-planet">☉ Sun</span><span class="sb-place">Cancer 18° · 10th · Ashlesha</span></div>
-    <div class="sb-item"><span class="sb-planet">☽ Moon</span><span class="sb-place">Libra 13° · 1st · Swati</span></div>
-    <div class="sb-item"><span class="sb-planet">☿ Mercury Rx</span><span class="sb-place">Cancer 9° · 10th · Pushya</span></div>
-    <div class="sb-item"><span class="sb-planet">♀ Venus</span><span class="sb-place">Leo 16° · 11th · P.Phalguni</span></div>
-    <div class="sb-item"><span class="sb-planet">♂ Mars</span><span class="sb-place">Aquarius 15° · 5th · Shatabishak</span></div>
-    <div class="sb-item"><span class="sb-planet">♃ Jupiter ★</span><span class="sb-place">Cancer 18° · 10th · Ashlesha</span></div>
-    <div class="sb-item"><span class="sb-planet">♄ Saturn</span><span class="sb-place">Taurus 15° · 8th · Rohini</span></div>
-    <div class="sb-item"><span class="sb-planet">☊ Rahu</span><span class="sb-place">Aries 5° · 7th · Ashwini</span></div>
-    <div class="sb-item"><span class="sb-planet">☋ Ketu</span><span class="sb-place">Libra 5° · 1st · Chitra</span></div>
+    <div class="sb-item" onclick="showExplainer('rising')"><span class="sb-planet">↑ Rising</span><span class="sb-place">Libra 26° · Vishakha</span></div>
+    <div class="sb-item" onclick="showExplainer('sun')"><span class="sb-planet">☉ Sun</span><span class="sb-place">Cancer 18° · 10th · Ashlesha</span></div>
+    <div class="sb-item" onclick="showExplainer('moon')"><span class="sb-planet">☽ Moon</span><span class="sb-place">Libra 13° · 1st · Swati</span></div>
+    <div class="sb-item" onclick="showExplainer('mercury')"><span class="sb-planet">☿ Mercury Rx</span><span class="sb-place">Cancer 9° · 10th · Pushya</span></div>
+    <div class="sb-item" onclick="showExplainer('venus')"><span class="sb-planet">♀ Venus</span><span class="sb-place">Leo 16° · 11th · P.Phalguni</span></div>
+    <div class="sb-item" onclick="showExplainer('mars')"><span class="sb-planet">♂ Mars</span><span class="sb-place">Aquarius 15° · 5th · Shatabishak</span></div>
+    <div class="sb-item" onclick="showExplainer('jupiter')"><span class="sb-planet">♃ Jupiter ★</span><span class="sb-place">Cancer 18° · 10th · Ashlesha</span></div>
+    <div class="sb-item" onclick="showExplainer('saturn')"><span class="sb-planet">♄ Saturn</span><span class="sb-place">Taurus 15° · 8th · Rohini</span></div>
+    <div class="sb-item" onclick="showExplainer('rahu')"><span class="sb-planet">☊ Rahu</span><span class="sb-place">Aries 5° · 7th · Ashwini</span></div>
+    <div class="sb-item" onclick="showExplainer('ketu')"><span class="sb-planet">☋ Ketu</span><span class="sb-place">Libra 5° · 1st · Chitra</span></div>
+    <div class="sb-hint">tap any planet to learn more</div>
   </div>
   <hr class="sb-divider">
-  <div class="sb-dasha">
+  <div class="sb-dasha" onclick="showExplainer('dasha')" style="cursor:pointer;">
     <div class="sb-dasha-main">♃ Jupiter Mahadasha</div>
     <div class="sb-dasha-sub">2013–2029 · Career, Wisdom, Expansion</div>
     <div class="sb-dasha-sub" style="margin-top:5px;color:var(--crimson-light)">Jup–Mars → Nov 2026<br>Jup–Rahu Nov 2026–Feb 2029</div>
   </div>
   <div class="sb-section">
-    <div class="sb-label">Western (Tropical)</div>
-    <div class="sb-note">Sun Leo 11° · Rising Scorpio 20°</div>
+    <div class="sb-label">Western · Big Three</div>
+    <div class="sb-item" onclick="showExplainer('sun-w')"><span class="sb-planet">☉ Sun</span><span class="sb-place">Leo 11°</span></div>
+    <div class="sb-item" onclick="showExplainer('moon-w')"><span class="sb-planet">☽ Moon</span><span class="sb-place">Scorpio 7°</span></div>
+    <div class="sb-item" onclick="showExplainer('rising-w')"><span class="sb-planet">↑ Rising</span><span class="sb-place">Scorpio 20°</span></div>
+    <div class="sb-hint">tap to see how it layers</div>
   </div>
   <div class="sb-section">
     <div class="sb-label">Houses · Libra Rising</div>
@@ -633,75 +672,117 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   <div class="glyph-divider">✦ · ✦ · ✦</div>
 
   <div class="month-section" id="month-index">
-    <div class="section-heading">Learn the Language</div>
-    <div class="index-section">
-      <div class="index-title">✦ Your Chart Glossary</div>
-      <div class="index-sub">You said you've never had your chart read. Every term in this planner is explained here, through your specific placements.</div>
-      <div class="index-grid">
-        <div class="index-term">
-          <div class="it-name">Rising Sign (Lagna)</div>
-          <div class="it-body">The sign on the eastern horizon at your birth moment — the lens through which you meet the world and it meets you. Determines the entire house system.</div>
-          <div class="it-andie">Libra Rising at 26.8°, Vishakha nakshatra. Venus rules your entire chart (Libra = Venus). Vishakha: the archer who doesn't stop until the target falls. Focused, achieving, all-or-nothing with what you care about.</div>
+    <div class="section-heading">Your Chart as a Story</div>
+    <p style="font-size:0.8rem;color:var(--text-light);line-height:1.8;margin-bottom:24px;">You said you've never had your chart read. So instead of a glossary — here's the story your chart is telling. Read it once and then watch it play out in the months above.</p>
+
+    <div class="journey-chapter">
+      <div class="jc-num">Chapter One</div>
+      <div class="jc-title">Who You Are When You Walk Into a Room</div>
+      <div class="jc-body">
+        <p>The first thing to understand about your chart is your <strong style="color:var(--text)">Rising sign</strong> — called the Lagna in Vedic astrology. It's the sign that was rising on the eastern horizon the exact moment you were born at 4:35 AM in Afton, Wyoming. This sign becomes the lens through which you experience everything, and through which the world experiences you.</p>
+        <p>Yours is <strong style="color:var(--text)">Libra</strong>, at 26.8° — specifically in a nakshatra called <strong style="color:var(--text)">Vishakha</strong>. Nakshatras are like a 27-section zoom lens inside each zodiac sign — more precise than just knowing your sign. Vishakha is ruled by Indra and Agni, the gods of sky and fire. Its symbol is the forked branch, the gateway arch. Vishakha people aim at a target and do not stop. They may try multiple paths, but they always converge at the goal. Getting your own crane is a Vishakha act.</p>
+        <div class="jc-highlight">"She doesn't stop until it's done." That is Vishakha Rising in a sentence.</div>
+        <p>Because Libra is Rising, <strong style="color:var(--text)">Venus rules your entire chart</strong>. Every planet, every house, every theme in your life has a Venusian quality running through it — beauty, value, relationship, the desire for things to be right. This doesn't mean your life is soft. It means everything you build, you build with a certain quality. The crane is operated with care. The work has beauty in the execution even if the industry doesn't look beautiful from the outside.</p>
+        <p>In Western astrology, your Rising is <strong style="color:var(--text)">Scorpio 20°</strong>. This adds a layer of intensity and magnetism — you have presence before you say anything. The combination of Libra Rising (Vedic: graceful, relational, value-driven) and Scorpio Rising (Western: magnetic, depth-driven, transformational) explains the "bold, lush, dark" aesthetic you chose for this planner. Both are true. Both are you.</p>
+      </div>
+    </div>
+
+    <div class="journey-chapter">
+      <div class="jc-num">Chapter Two</div>
+      <div class="jc-title">What You Were Built to Do in the World</div>
+      <div class="jc-body">
+        <p>The 10th house in your chart is the house of career, public life, and the reputation that follows you. In Vedic astrology with Whole Sign Houses and Libra Rising, your 10th house is <strong style="color:var(--text)">Cancer</strong>. And in Cancer, you have three planets:</p>
+        <div class="jc-planet-row">
+          <span class="jc-planet-chip active">☉ Sun · Cancer 18° · Ashlesha</span>
+          <span class="jc-planet-chip active">☿ Mercury Rx · Cancer 9° · Pushya</span>
+          <span class="jc-planet-chip active">♃ Jupiter ★ · Cancer 18° · Ashlesha</span>
         </div>
-        <div class="index-term">
-          <div class="it-name">10th House Stellium</div>
-          <div class="it-body">Three or more planets in the career house. One of the most powerful career signatures in Vedic astrology — the entire professional life is heavily marked.</div>
-          <div class="it-andie">Sun, Mercury (Rx), and Jupiter (exalted) all in Cancer in your 10th house. Getting your crane is this stellium made physical. You were built to be known for what you do with your hands and your authority. The 10th house rewards patience and it rewards you.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Jupiter Exalted in 10th</div>
-          <div class="it-body">Jupiter in its sign of exaltation (Cancer) in the house of career. One of the most powerful career placements in Vedic astrology — recognition, authority, and expansion through professional life.</div>
-          <div class="it-andie">Your Jupiter is exalted in Cancer in your 10th house. This placement builds over a lifetime — the older you get, the more it unfolds. What you're building professionally at 23 is the foundation of the reputation you'll have at 35 and 45. Jupiter rewards the patient builder.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Moon in 1st House (Lagna)</div>
-          <div class="it-body">The Moon in the house of self and identity. Creates a deeply feeling, emotionally present personality — emotions live in the body and in how you show up in the world.</div>
-          <div class="it-andie">Moon in Libra 13°, Swati nakshatra, in your 1st house. Swati is the wind — independent, self-directed, impossible to contain. Your emotional freedom is as essential as your physical freedom. Your Moon in the 1st means people feel your emotional state even when you don't speak it.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Ketu in 1st House</div>
-          <div class="it-body">Ketu represents past life mastery and what you're now releasing or refining. In the 1st house: past life mastery of self, identity, and presence — and the current life question of who you are beyond past definitions.</div>
-          <div class="it-andie">Ketu in Libra 5°, Chitra nakshatra. This is why identity is your focus. Ketu in 1st: who are you outside of how anyone else defines you? Chitra is the cosmic architect, the jewel-maker. Past life mastery of building and crafting beautiful things — this is why operating precision equipment feels natural, not foreign.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Venus as Lagna Lord</div>
-          <div class="it-body">For Libra Rising, Venus rules the Ascendant — making Venus the most important planet in the chart. The quality of Venus describes the quality of your whole life.</div>
-          <div class="it-andie">Venus in Leo 16°, Purva Phalguni nakshatra, in your 11th house of income and gains. Purva Phalguni is ruled by Venus itself — double Venus energy. You earn through beauty, creativity, and authentic community connection. Lagna lord in 11th is a classic abundance placement.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Rahu in 7th House</div>
-          <div class="it-body">Rahu shows the growth edge — where you're being pulled that feels new, hungry, and slightly overwhelming. In the 7th: growth through one-on-one partnerships and how you meet others.</div>
-          <div class="it-andie">Rahu in Aries 5°, Ashwini nakshatra, in your 7th. You grow most through direct, pioneering one-on-one partnerships. Ashwini: the divine physicians who move fast and heal quickly. Your most significant expansion in 2026–2029 comes through who you build alongside.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Saturn in 8th House</div>
-          <div class="it-body">Saturn in the house of transformation, depth, and what lives below the surface. Slow, patient transformation work that builds to something permanent.</div>
-          <div class="it-andie">Saturn in Taurus 15°, Rohini nakshatra, in your 8th house. Rohini is the most fertile nakshatra — what you transform becomes soil for the next thing. Saturn in the 8th works slowly and completely. What has been shifting beneath the surface in you for years is almost always closer to completion than it feels.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Nakshatra</div>
-          <div class="it-body">The 27 lunar mansions of Vedic astrology — 13°20' each, more precise than signs. They reveal the soul-quality and texture of any planet's expression.</div>
-          <div class="it-andie">Rising: Vishakha (focused, achieving). Moon: Swati (the wind, independent). Venus: Purva Phalguni (creative abundance, rest is sacred). Jupiter: Ashlesha (penetrating wisdom, depth of power). Saturn: Rohini (fertile, material, beloved). Mercury: Pushya (nourishing, teaching). Rahu: Ashwini (fast healer). Ketu: Chitra (architect, craftsperson).</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Vimshottari Dasha</div>
-          <div class="it-body">120-year planetary period system — which planet governs your life chapter right now and for how long.</div>
-          <div class="it-andie">Jupiter Mahadasha 2013–2029. Jupiter governs your career house and is exalted there. This entire Mahadasha has been building professional recognition and wisdom. Jupiter–Mars antardasha (physical work, independent achievement = crane) ends Nov 2026. Jupiter–Rahu begins: unconventional partnerships, accelerated expansion, 2+ years.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">Mercury Retrograde (Natal)</div>
-          <div class="it-body">Mercury retrograde in the birth chart means the mind works inward before outward — deep processing before external communication.</div>
-          <div class="it-andie">Mercury Rx in Cancer 9°, Pushya nakshatra, in your 10th house. Your career intelligence is internalized — you know things about work situations before you can articulate them. Pushya is the most nourishing nakshatra. Your professional mind nourishes what it touches. Trust the slow knowing.</div>
-        </div>
-        <div class="index-term">
-          <div class="it-name">New Moon in Your 1st House</div>
-          <div class="it-body">The most personally significant lunation of the year — a new beginning of self, identity, body, and how you move through the world.</div>
-          <div class="it-andie">September 21, 2026: New Moon in Libra — your Rising sign, your Moon's house. Your natal Moon is here. Ketu is here. This is the identity lunation you asked for when you said your focus area was identity. What begins in September about who you are — plant it deliberately. The chart is listening.</div>
-        </div>
+        <p>Three planets in the career house. And one of them — <strong style="color:var(--text)">Jupiter — is exalted in Cancer</strong>. Exaltation means a planet is in its highest-functioning sign, doing exactly what it was built for. Jupiter in Cancer is like a master architect in their dream studio. This is a once-in-a-lifetime placement, and you were born with it in your career house.</p>
+        <p>Your <strong style="color:var(--text)">Sun in the 10th</strong> means your professional identity is your soul's expression — you don't just work for money, you work because it defines something essential about who you are. Your <strong style="color:var(--text)">Mercury retrograde in the 10th</strong> means your professional intelligence is internalized — you process deeply before you communicate. You often know what the right call is before you can explain why. Trust that. And your <strong style="color:var(--text)">exalted Jupiter in the 10th</strong> means that what you build professionally is blessed, recognized, and compounds over time. The older you get, the more powerful this placement becomes.</p>
+        <div class="jc-highlight">The crane is not an accident. It is three planets in your career house, one of them exalted, activated by Jupiter's transit right now.</div>
+        <div class="jc-realtime"><strong>Watch this in real time:</strong> Jupiter is currently transiting Cancer — your 10th house — and activating this natal stellium. This is the career chapter you're living right now. The achievement you made in getting your own crane happened during this exact transit. When you see June–July 2026 in the monthly sections, that's this moment. Watch August: when Jupiter moves into Leo (your 11th house), the career achievement starts generating income and community.</div>
+      </div>
+    </div>
+
+    <div class="journey-chapter">
+      <div class="jc-num">Chapter Three</div>
+      <div class="jc-title">The Interior: Who You Are When No One Is Watching</div>
+      <div class="jc-body">
+        <p>Your <strong style="color:var(--text)">Moon</strong> is the planet of your emotional world, your inner life, your instincts. In Vedic astrology, the Moon is often considered the most personal planet — more revealing than the Sun about who you actually are on the inside.</p>
+        <p>Your Moon is in <strong style="color:var(--text)">Libra 13°, in Swati nakshatra, in your 1st house</strong>. Swati is ruled by Vayu — the wind god. The symbol is a single blade of grass bending in the wind. It doesn't break. It doesn't resist. It moves with total independence and flexibility, rooted but not rigid. <strong style="color:var(--text)">Swati people cannot be contained</strong>. They need freedom of movement — physical, emotional, relational. A life that boxes them in will eventually lose them. This is not stubbornness. This is your emotional design.</p>
+        <p>The Moon in your 1st house means your emotions aren't hidden — they live in your body, in your presence, in the way you walk into a room. People feel how you feel even when you don't tell them. This is both a gift and something to learn to navigate. You lead with feeling. That is not weakness. That is your 1st house Moon.</p>
+        <p>In Western astrology, your Moon is in <strong style="color:var(--text)">Scorpio 7°</strong>. Scorpio Moon: you feel everything at extraordinary depth, you see beneath surfaces others don't notice, and you need intensity to feel alive. Leo Sun (your Western Sun) + Scorpio Moon + Scorpio Rising in Western — that's the combination that produced "bold, lush, dark" as your aesthetic. The Leo craves being seen; the Scorpio craves depth and mystery. You are both at once.</p>
+        <div class="jc-highlight">"Why do I feel things so deeply but show them so selectively?" → Scorpio Moon. "Why do I need so much freedom even within relationships?" → Swati nakshatra Moon in 1st.</div>
+        <p>Also in your 1st house: <strong style="color:var(--text)">Ketu at 5° Libra, in Chitra nakshatra</strong>. Ketu represents your past life mastery — things that came in with you, that feel natural rather than earned. Chitra is the cosmic architect, the jewel-cutter, the craftsperson. The precision and beauty that live in your hands — operating equipment with skill, building things, working with material in space — these are Chitra gifts. They feel easy because they are yours from before this life.</p>
+        <p>But Ketu in the 1st also creates the central question of your life: <strong style="color:var(--text)">who am I without reference to anyone else's perception of me?</strong> This is why you listed "identity" as a focus area. The chart was already listening to that question before you arrived.</p>
+        <div class="jc-realtime"><strong>Watch this in real time:</strong> September 21, 2026 — New Moon in Libra lands directly in your 1st house, where your Moon and Ketu both live. That is the single most personally significant lunation of this planner year. Whatever shifts in your sense of self in September is this chart making it official. Watch it.</div>
+      </div>
+    </div>
+
+    <div class="journey-chapter">
+      <div class="jc-num">Chapter Four</div>
+      <div class="jc-title">How You're Sustained · Venus, Rahu, and the 11th House</div>
+      <div class="jc-body">
+        <p>Remember: Venus rules your entire chart. So where Venus is placed tells you how your whole life is resourced and sustained. Your Venus is in <strong style="color:var(--text)">Leo 16°, Purva Phalguni nakshatra, in your 11th house</strong>.</p>
+        <p>The 11th house is the house of income, gains, community, long-term goals, and the friends and networks that support your future. Venus (your Lagna lord) sitting here is called a "Lagna lord in the 11th" placement — it's one of the classic signs of someone who generates abundance through who they authentically are and who they know. You don't have to perform for people to gain from knowing you. Your community is a resource. Your presence in the right rooms creates opportunities.</p>
+        <p><strong style="color:var(--text)">Purva Phalguni</strong> is ruled by Venus itself — so Venus is in a nakshatra it also rules. This doubles the Venusian quality: beauty, creative pleasure, the sacred right to rest and enjoy what you've built. Purva Phalguni's deity is Bhaga — the god of fortune and delight. One of this nakshatra's teachings is that <strong style="color:var(--text)">rest is not laziness, and pleasure is not indulgence</strong>. They are part of your design.</p>
+        <div class="jc-realtime"><strong>Watch this in real time:</strong> Jupiter enters your 11th house (Leo) in August 2026 — meeting your natal Venus. This is the transit that turns career achievement into income and community expansion. The crane gets you paid. Watch August onward for the financial opening.</div>
+        <p>Opposite your Venus, in your 7th house (Aries), lives <strong style="color:var(--text)">Rahu in Ashwini nakshatra</strong>. Rahu is the north node — it shows where you're being pulled toward, the growth edge that feels urgent and slightly overwhelming. In your 7th house, your growth edge is <strong style="color:var(--text)">one-on-one partnership</strong>. The most expansive relationships in your life are the ones that push you — that require you to show up fully, to maintain yourself while building something with another person. Rahu in Ashwini moves fast. These partnerships don't arrive slowly.</p>
+        <p>Opposite Rahu, at Ketu (Chitra, 1st house) — the axis completes: you come in knowing how to be yourself, but your growth comes through encounter with an equal. The crane operator and the person who needs what the crane can lift. The solo mastery and the partnership that reveals what it can do.</p>
+      </div>
+    </div>
+
+    <div class="journey-chapter">
+      <div class="jc-num">Chapter Five</div>
+      <div class="jc-title">The Depth Current · Saturn and the Hidden Work</div>
+      <div class="jc-body">
+        <p>Your <strong style="color:var(--text)">Saturn sits in Taurus 15°, Rohini nakshatra, in your 8th house</strong>. This is the placement that explains why your transformation — personal, emotional, internal — has a quality of depth and slow completion. Saturn in the 8th doesn't rush. It doesn't skip steps. It descends into what needs to be worked on and stays until it's done.</p>
+        <p>The 8th house is the house of transformation, of what lives below the surface, of death and rebirth cycles, of what we inherit (literally or energetically), of shared resources, and of what we can't fully control. Saturn here makes your most significant personal growth quiet and internal. People may not see the transformation you're going through — but it's always in progress. <strong style="color:var(--text)">What Saturn in the 8th is building is permanent</strong>. Everything it dismantles is something that wasn't built to last.</p>
+        <p><strong style="color:var(--text)">Rohini</strong> is the Moon's most beloved nakshatra — the most fertile in the zodiac. The Moon rests in Rohini. What this nakshatra touches becomes material and abundant over time. Saturn here: even in your most transformative work, there is fertility. What you release becomes soil for the next chapter.</p>
+        <p>Your <strong style="color:var(--text)">Mars lives in Aquarius 15°, Shatabishak nakshatra, in your 5th house</strong> — the house of creativity, joy, bold self-expression, and speculative risk. Mars in Aquarius is unconventional, original, not interested in the mainstream version of anything. Shatabishak: 100 healers, those who work outside the norm, whose methods are unorthodox and whose results are real. Your creative drive doesn't look like everyone else's. The things you make or express don't follow the expected template. Trust that as a feature, not a problem.</p>
+        <div class="jc-highlight">The depth of your inner work (Saturn 8th) and the originality of your outer expression (Mars 5th Shatabishak) are not in tension. The depth is what makes the expression real.</div>
+      </div>
+    </div>
+
+    <div class="journey-chapter">
+      <div class="jc-num">Chapter Six</div>
+      <div class="jc-title">The Timing System · How the Chart Knows When</div>
+      <div class="jc-body">
+        <p>Western astrology uses transits — where planets are right now — to time events. Vedic astrology adds a second system called the <strong style="color:var(--text)">Vimshottari Dasha</strong>: a 120-year cycle of planetary periods, each planet governing your life for a set number of years in turn. Right now, you are in the <strong style="color:var(--text)">Jupiter Mahadasha</strong> — Jupiter's period runs from 2013 to 2029. 16 years of Jupiter governing your life chapter.</p>
+        <p>Jupiter, as we established, is exalted in your 10th house of career. This means your entire professional arc since age 9 has been under Jupiter's blessing — even in the years that didn't look like it yet. The seeds were being planted. You are now in the harvest.</p>
+        <p>Within Jupiter's 16-year period, there are <strong style="color:var(--text)">sub-periods (antardashas)</strong> — shorter chapters governed by each planet in sequence. Right now you're in <strong style="color:var(--text)">Jupiter–Mars antardasha</strong>: Jupiter's expansion operating through Mars's energy of physical action, discipline, and independent achievement. Mars rules your 2nd house (money/values) and 7th house (Rahu, partnerships). This sub-period is specifically about earning through physical, disciplined work and laying the foundation for the partnerships that will accelerate your next chapter. The crane is Jupiter–Mars made literal.</p>
+        <p>In <strong style="color:var(--text)">November 2026</strong>, the sub-period shifts to <strong style="color:var(--text)">Jupiter–Rahu</strong>. Rahu in your 7th house. Jupiter expanding Rahu's unconventional, ambitious energy. This runs until February 2029 — over two years of your greatest growth coming through extraordinary, catalyzing one-on-one partnerships and unconventional expansion. If something or someone arrives in late 2026 or 2027 that feels fated, fast, and accelerating — that is Jupiter–Rahu doing exactly what it was designed to do.</p>
+        <div class="jc-realtime"><strong>The whole planner year in one view:</strong> June–July: Jupiter in 10th (career peak, crane). August: Jupiter into 11th, birthday (income opens). September: New Moon in 1st (identity reset). November: Jupiter–Rahu begins (partnership era starts). 2027: A new moon in every house, one by one, the chart walking you through every area of your life. By July 2027, when the new moon returns to Cancer (your 10th house), you will be a different person standing in the same career. The chart is not static. It is a living document. And this planner lets you watch it move.</div>
+      </div>
+    </div>
+
+    <div class="journey-chapter">
+      <div class="jc-num">Chapter Seven · The Bridge</div>
+      <div class="jc-title">Two Systems, One You — How Vedic and Western Layer</div>
+      <div class="jc-body">
+        <p>You have two charts: a <strong style="color:var(--text)">Vedic (sidereal) chart</strong> and a <strong style="color:var(--text)">Western (tropical) chart</strong>. They use different starting points for the zodiac — the Vedic system is fixed to the actual stars (corrected by ~24°), while the Western system is fixed to the seasons. Neither is wrong. They show different layers of the same person.</p>
+        <p>Your Vedic chart: <strong style="color:var(--text)">Libra Rising, Cancer 10th, Moon in 1st</strong>. Shows your spiritual purpose, your karma, the deep structural story of your soul's work in this life.<br>Your Western chart: <strong style="color:var(--text)">Scorpio Rising, Leo Sun, Scorpio Moon</strong>. Shows your psychological landscape, your personality expression, how you navigate the visible human world.</p>
+        <p>The interesting thing: both systems agree on the <strong style="color:var(--text)">aesthetic Andie</strong>. Vedic: Libra Rising (beauty, value, Venus) + Vishakha (fire, focus, achievement) + Scorpio Rising in the West (magnetism, intensity, depth). Western: Leo Sun (bold, golden, wants to be seen) + Scorpio Moon (dark, deep, hides what it feels most). Both layers tell the same story: bold on the surface, vast on the inside. The dark reds and greens and black you chose are your psychological truth, not just an aesthetic preference.</p>
+        <p>The Vedic chart governs the timing system (dashas, nakshatras) and is more precise about career and life structure. The Western chart is excellent for understanding emotional patterns, relationships, and psychological themes. Use them both. They are lenses, not competing truths.</p>
+        <div class="jc-highlight">You are Libra Rising learning to need no mirror to know she's whole. You are Scorpio Moon learning that depth is power, not burden. You are Vishakha Rising: the archer who keeps aiming. You are Jupiter exalted in the 10th: the professional whose work matters and will be remembered. All of this is already in you. This planner just helps you watch it unfold.</div>
       </div>
     </div>
   </div>
 </main>
+</div>
+
+<!-- PLANET EXPLAINER -->
+<div class="pex-overlay" id="pexModal">
+  <div class="pex-card">
+    <button class="pex-close" onclick="closePex()">✕</button>
+    <div class="pex-glyph" id="pex-glyph"></div>
+    <div class="pex-title" id="pex-title"></div>
+    <div class="pex-coords" id="pex-coords"></div>
+    <div class="pex-what" id="pex-what"></div>
+    <div class="pex-you" id="pex-you"></div>
+    <div class="pex-nakshatra" id="pex-nakshatra" style="display:none"></div>
+    <div class="pex-now" id="pex-now" style="display:none"></div>
+  </div>
 </div>
 
 <div class="modal-overlay" id="dayModal">
@@ -859,7 +940,8 @@ function buildCal(year,month){
     if(ds==='2026-08-04'||ds==='2027-08-04')cls+=' birthday';
     const hasNote=state['note-'+ds]||state['mood-'+ds];
     const st=KEY_DATES[ds]?KEY_DATES[ds].title.split('·')[0].trim().substring(0,16):'';
-    h+='<div class="'+cls+'" onclick="openDay(\''+ds+'\')">'+'<span class="day-num">'+d+'</span>'+(st?'<div class="day-note">'+st+'</div>':'')+(hasNote?'<div class="note-dot"></div>':'')+'</div>';
+    const mp=moonPhase(ds).split(' ')[0];
+    h+='<div class="'+cls+'" onclick="openDay(\''+ds+'\')">'+'<span class="day-num">'+d+'</span>'+'<span class="day-moon">'+mp+'</span>'+(st?'<div class="day-note">'+st+'</div>':'')+(hasNote?'<div class="note-dot"></div>':'')+'</div>';
   }
   const rem=(first+dim)%7;
   if(rem>0)for(let i=1;i<=7-rem;i++)h+='<div class="cal-day other-month"><span class="day-num">'+i+'</span></div>';
@@ -954,6 +1036,127 @@ function restoreJournals(){
 }
 
 window.addEventListener('DOMContentLoaded',()=>{buildToday();buildNav();MONTHS.forEach(([y,m])=>buildCal(y,m));restoreJournals();});
+
+// ── PLANET EXPLAINER ─────────────────────────────────────────────────────
+const CHART_EXPLAINER = {
+  rising:{
+    glyph:'♎',title:'Libra Rising',coords:'26.8° Libra · Vishakha Nakshatra · 1st House Cusp',
+    what:'The Rising sign (Lagna) is the sign on the eastern horizon at the exact moment of birth. It is the lens through which you experience the world and the world experiences you. It sets the entire house system — every area of life is organized from this point.',
+    you:'<p>Your Rising is <strong>Libra</strong> — ruled by Venus. This makes Venus the single most important planet in your entire chart. Everything in your life has a Venusian quality: value, beauty, relationship, the desire for things to feel right. You build with care and quality, even in industries that don\'t look "beautiful" from the outside.</p><p>You rise at 26.8° of Libra, in <strong>Vishakha nakshatra</strong>. Vishakha people set a goal and do not stop. The symbol is the forked branch — two paths that converge at one destination. You may try different routes, but you always find the target. Getting your crane: this is Vishakha Rising. The focused, all-or-nothing commitment to what you care about.</p>',
+    nakshatra:'Vishakha · Ruled by Indra + Agni (sky and fire) · Symbol: the forked branch / gateway arch · Core quality: single-pointed focus toward the goal. Vishakha people are achievement-driven, intensely motivated, and tend to find their greatest success later in a chapter — not at the start, but at the culmination.',
+    now:'Right now, Saturn is transiting through Pisces (your 6th house). Your rising sign activates most powerfully under Jupiter transits — and Jupiter just spent time in your 10th house (career peak) and is now moving into your 11th (income expansion). The Vishakha archer is in mid-flight.'
+  },
+  sun:{
+    glyph:'☉',title:'Sun · Cancer 18° · 10th House',coords:'Cancer 18°27\' · Ashlesha Nakshatra · 10th House',
+    what:'The Sun is the planet of soul, identity, and vitality — not just your ego, but what you were born to express publicly in this lifetime. In the 10th house (career/public life), the Sun makes your professional identity central to who you are as a person.',
+    you:'<p>Your Sun is in <strong>Cancer in your 10th house</strong>. Career is not separate from who you are at the soul level — you were born to be known for what you do, and what you do carries a Cancer quality: protective, caring, deeply invested in what you build, attentive to the people within it. You don\'t operate the crane mechanically. You actually care about the work.</p><p>Cancer in the 10th also means your public authority has warmth in it. You don\'t lead by force or intimidation. You lead by demonstrating that you actually care about getting it right.</p>',
+    nakshatra:'Ashlesha Nakshatra · Ruled by Mercury · Symbol: the coiled serpent · Core quality: penetrating wisdom, seeing beneath the surface, instinctual intelligence. Ashlesha people sense things before they can explain them. In the 10th house: your professional instincts are accurate. You read situations and people at work with a depth others don\'t notice. Trust what you know before you can prove it.',
+    now:'Jupiter is currently transiting Cancer — your 10th house — conjuncting your natal Sun. This happens once every 12 years. It is the transit that brings professional visibility, recognition, and new chapters to what you\'ve been building. The crane chapter opened under this transit. You are in it right now.'
+  },
+  moon:{
+    glyph:'☽',title:'Moon · Libra 13° · 1st House',coords:'Libra 13°10\' · Swati Nakshatra · 1st House',
+    what:'The Moon is the planet of emotion, inner life, instinct, and the subconscious. In Vedic astrology, the Moon is considered more personally revealing than the Sun — it shows who you actually are beneath the role you play. In the 1st house, the Moon\'s qualities are front and center in your personality and presence.',
+    you:'<p>Your Moon is in <strong>Libra, Swati nakshatra, in your 1st house</strong>. Your emotional world is not hidden — it lives in your body, in the way you enter a room, in your physical presence. People feel what you feel even when you don\'t say it. This is not a vulnerability. It is a form of communication.</p><p>Swati is the wind. The grass blade that bends without breaking. <strong>You need freedom of movement — physical, emotional, relational</strong>. A situation, relationship, or environment that boxes you in will eventually lose you. This is not stubbornness. It is your emotional blueprint. The moments in your life when you felt most like yourself were probably the moments when you had the most autonomy.</p>',
+    nakshatra:'Swati Nakshatra · Ruled by Vayu (wind god) · Symbol: a single blade of grass in the wind · Core quality: independent movement, self-directed, bending without breaking. Swati Moon people are emotionally self-sufficient. They feel deeply but process internally. They are impossible to truly contain. They need space to move — in every sense — to feel well.',
+    now:'Your Moon in the 1st house means every new moon that lands in Libra is personal for you — it lands in your house of self and identity, on your Moon\'s sign. The September 21, 2026 New Moon in Libra is your most significant lunation of the year. Watch what shifts in how you see yourself in that window.'
+  },
+  mercury:{
+    glyph:'☿',title:'Mercury ☿ Retrograde · Cancer 9° · 10th House',coords:'Cancer 9°15\' Rx · Pushya Nakshatra · 10th House',
+    what:'Mercury is the planet of mind, communication, and intelligence. When Mercury is retrograde in the birth chart (natal Rx), it means the mind naturally turns inward before outward — processing deep before expressing. This is not a flaw. It is a different kind of intelligence.',
+    you:'<p>Your Mercury is <strong>retrograde in Cancer in your 10th house of career</strong>. Your professional mind goes deep before it surfaces into speech. You often know what the right move is before you can articulate it. You process career decisions internally — sometimes for a while — before communicating them outward. This is why you might seem quiet in situations where others react immediately, and then come back with something precise.</p><p>Don\'t let anyone make you feel slow. You are not slow. You are thorough in a way that doesn\'t broadcast itself.</p>',
+    nakshatra:'Pushya Nakshatra · Ruled by Saturn · Symbol: the flower, the cow\'s udder · Core quality: nourishing, sustaining, feeding what is in need. Pushya is the most auspicious nakshatra in Vedic astrology. Your professional mind nourishes what it touches — the work you think about carefully, the communication you craft slowly, the decision you arrive at through depth. The people who receive your career output often feel supported and cared for by it.',
+    now:'Mercury Rx in the 10th is why your career has a strong internal processing quality right now. Trust the slow professional knowing. What you know before you can say it is usually accurate.'
+  },
+  venus:{
+    glyph:'♀',title:'Venus · Leo 16° · 11th House · Your Lagna Lord',coords:'Leo 16°20\' · Purva Phalguni Nakshatra · 11th House',
+    what:'Venus is the planet of beauty, creativity, value, relationships, and abundance. For Libra Rising, Venus is the Lagna lord — the ruler of your entire chart. This makes Venus the single most important planet placement to understand in your chart. Where Venus is placed tells you how your entire life is resourced.',
+    you:'<p>Your Venus is in <strong>Leo 16°, Purva Phalguni nakshatra, in your 11th house</strong> of income, gains, community, and long-term goals. Your chart ruler in the house of abundance: this is a classic placement for someone who generates income and opportunity through who they authentically are and through the communities they belong to. You don\'t have to manufacture value. You carry it.</p><p>Leo Venus loves beauty, self-expression, being seen and celebrated. But your Venus is in the 11th, not the 1st — it\'s not about being adored personally (though that\'s fine), it\'s about building a community and an income stream that reflects your actual worth.</p>',
+    nakshatra:'Purva Phalguni Nakshatra · Ruled by Venus (itself) · Deity: Bhaga, the god of fortune and delight · Symbol: the bed, the hammock · Core quality: creative pleasure, rest as sacred, abundance through beauty. Double Venus energy: Venus in a Venus-ruled nakshatra. This is the nakshatra that says rest is not laziness and pleasure is not indulgence. You are allowed to enjoy what you\'ve built. Rest restores your capacity for creative work. Delight is part of your professional design.',
+    now:'Jupiter enters Leo (your 11th house) in August 2026, meeting your natal Venus. Jupiter + your Lagna lord in the house of income = a financial and community expansion that follows directly from the career chapter of June–July. This is when what you built starts generating a different kind of return.'
+  },
+  mars:{
+    glyph:'♂',title:'Mars · Aquarius 15° · 5th House',coords:'Aquarius 15°40\' · Shatabishak Nakshatra · 5th House',
+    what:'Mars is the planet of drive, action, courage, and how you pursue what you want. It governs energy, discipline, and the way you cut through obstacles. In the 5th house (creativity, joy, bold expression, romance), Mars brings fierce creative energy and the courage to express without apology.',
+    you:'<p>Your Mars is in <strong>Aquarius, Shatabishak nakshatra, in your 5th house</strong>. Your creative drive is original and unconventional — it doesn\'t look like everyone else\'s version, and it shouldn\'t. Mars in Aquarius is the planet of action in the sign of innovation. What you make, build, or express will often be ahead of the curve or outside the expected template. This is not a liability. This is your creative signature.</p><p>Mars also rules your 2nd house (Scorpio — money, values) and your 7th house (Aries — Rahu, partnerships). This means your finances and your partnerships both have a Martian quality: they move quickly, they involve action and directness, and they reward courage over caution.</p>',
+    nakshatra:'Shatabishak Nakshatra · Ruled by Rahu · Deity: Varuna (the god of the cosmic ocean) · Symbol: 100 healers, an empty circle · Core quality: working outside the mainstream, healing through unconventional means, solitary strength. Shatabishak people see what others miss. Their methods are original, sometimes strange-looking from the outside, and usually effective. In the 5th house: your creativity heals something in the process of being made. Not by trying to — just by being genuinely yours.',
+    now:'February 2027: New Moon in Aquarius lands in your 5th house, exactly activating Mars\'s natal sign. A creative beginning arrives then — bold, original, Shatabishak in quality. Watch what you feel pulled to make or express in that window.'
+  },
+  jupiter:{
+    glyph:'♃',title:'Jupiter ★ Exalted · Cancer 18° · 10th House',coords:'Cancer 18°27\' · Ashlesha Nakshatra · 10th House · EXALTED',
+    what:'Jupiter is the planet of expansion, wisdom, fortune, and recognition. It is the great benefic — the planet that blesses what it touches. When a planet is exalted, it is in the sign where it functions at its absolute highest. Jupiter\'s sign of exaltation is Cancer. And yours is in the 10th house of career.',
+    you:'<p>You were born with <strong>Jupiter exalted in Cancer in your 10th house of career</strong>. This is one of the most powerful career placements in Vedic astrology. Jupiter in the 10th rewards disciplined, patient work with public recognition and long-term reputation. The older you get, the more this placement unfolds — it is not an explosive transit placement but a slow, compounding, lifetime gift.</p><p>Jupiter sits at <strong>18° Cancer, the same degree as your natal Sun</strong>. They are conjunct. This means your soul\'s identity (Sun) and your source of expansion and blessing (Jupiter) are fused in the career house. Your professional life is not just where you work. It is where you fulfill something essential about being alive.</p>',
+    nakshatra:'Ashlesha Nakshatra (same as your Sun) · The coiled serpent · Penetrating wisdom, psychic depth, seeing beneath the surface of professional situations. Jupiter here: your expansion in career comes through deep intelligence, not performance. You understand situations at a level others don\'t. Jupiter amplifies that capacity.',
+    now:'Jupiter is currently transiting through Cancer — your 10th house — conjuncting your natal Jupiter and Sun. A Jupiter return in the career house happens once every 12 years. This is the career chapter. Getting the crane happened under this transit. August 2026: Jupiter moves into Leo (11th house), and the career achievement begins generating income and community. Both phases are part of the same arc.'
+  },
+  saturn:{
+    glyph:'♄',title:'Saturn · Taurus 15° · 8th House',coords:'Taurus 15°20\' · Rohini Nakshatra · 8th House',
+    what:'Saturn is the planet of discipline, time, karma, and earned achievement. It moves slowly and permanently — what Saturn builds doesn\'t come apart, and what Saturn dismantles was never built to last. In the 8th house (transformation, depth, what\'s hidden), Saturn governs the most internal and private work of your life.',
+    you:'<p>Your Saturn is in <strong>Taurus 15°, Rohini nakshatra, in your 8th house</strong>. Your deepest personal transformation is quiet, slow, and permanent. People may not see it from the outside, but something is always completing beneath the surface. Saturn in the 8th does not rush. It waits until the change is real — not just felt, but structural.</p><p>Taurus is Saturn\'s sign, and it\'s also ruled by Venus (your Lagna lord). This connects your transformation process to your Venusian themes: self-worth, what you value, beauty, what you hold onto. The things Saturn is slowly asking you to release are often things you\'ve held for their beauty or comfort, not because they\'re still true for you.</p>',
+    nakshatra:'Rohini Nakshatra · Ruled by the Moon · Deity: Prajapati (the creator) · Symbol: the cart, the ox cart · Core quality: material fertility, abundance, beloved of the Moon. Rohini is the most fertile nakshatra in the zodiac — it is where the Moon exalts. Saturn in Rohini means even in your most transformative moments, there is fertility. What you let go of becomes soil. What you work through becomes the foundation of something lasting and materially real.',
+    now:'May 2027: New Moon in Taurus lands in your 8th house near natal Saturn. A completion point in a long transformation cycle. Watch what finishes in May 2027 — something that\'s been slowly working its way through may reach a natural ending.'
+  },
+  rahu:{
+    glyph:'☊',title:'Rahu · Aries 5° · 7th House',coords:'Aries 5°10\' · Ashwini Nakshatra · 7th House',
+    what:'Rahu (north node) is not a planet but a mathematical point — the place where the Moon\'s path crosses the Sun\'s from south to north. In Vedic astrology, it represents your growth edge in this lifetime: the direction you\'re being pulled toward that feels new, hungry, urgent, and sometimes overwhelming.',
+    you:'<p>Your Rahu is in <strong>Aries 5°, Ashwini nakshatra, in your 7th house</strong> of one-on-one partnerships, committed relationships, and how you meet others. Your growth edge in this life is through how you show up in direct, one-on-one encounter. The most expansive relationships in your life are the ones that challenge you — that require you to hold yourself while building something with another person.</p><p>Rahu in Aries: pioneer energy, self-directed, wants to go first. In the 7th house, this means the people you\'re pulled toward are often pioneers themselves — unconventional, direct, willing to move fast. Rahu\'s partnerships don\'t arrive slowly and don\'t feel lukewarm.</p>',
+    nakshatra:'Ashwini Nakshatra · Ruled by Ketu · Deities: the Ashwin twins, the divine physicians · Symbol: the horse\'s head · Core quality: speed, healing, the ability to arrive before expected. The Ashwin twins are the fastest healers — they move quickly, and what they touch recovers. Rahu in Ashwini in the 7th: your partnerships can catalyze healing in both directions, and they tend to move faster than expected.',
+    now:'Jupiter–Rahu antardasha begins November 2026 and runs through February 2029. Your Rahu in the 7th is about to be the focal point of your expansion period. The partnerships that arrive during this time are not accidental. They are the growth edge activating. April 2027: New Moon in Aries near your natal Rahu — a significant partnership beginning or revelation.'
+  },
+  ketu:{
+    glyph:'☋',title:'Ketu · Libra 5° · 1st House',coords:'Libra 5°10\' · Chitra Nakshatra · 1st House',
+    what:'Ketu (south node) is the opposite point to Rahu. Where Rahu shows your growth edge, Ketu shows what you\'ve already mastered — things that come naturally, that feel easy, that you arrived with from past lives (or, if you don\'t use that framework: deep ancestral gifts and early-life natural talents). In the 1st house, Ketu represents past-life mastery of self, identity, and presence.',
+    you:'<p>Your Ketu is in <strong>Libra 5°, Chitra nakshatra, in your 1st house</strong>. You arrived in this life with a mastery of the self and of craftsmanship. Things that feel natural to you — operating precision equipment, building things, working with material in space, having an instinct for how things should be structured — are Chitra gifts. They feel easy because they are not new. They are yours from before.</p><p>But Ketu in the 1st also creates the central question of your life: <strong>who are you without reference to how others see you?</strong> Ketu in the 1st house creates a gentle dissolution of old identity structures throughout life — not as loss, but as refinement. The versions of yourself that were built for external approval will naturally fall away. What remains is what is actually you.</p>',
+    nakshatra:'Chitra Nakshatra · Ruled by Mars · Deity: Vishwakarman (the cosmic architect, the builder of the gods\' tools and weapons) · Symbol: a bright jewel · Core quality: craftsmanship, precision, the ability to build beautiful things. Chitra people have an instinct for structure and beauty that others find effortless. Operating complex equipment with skill, having a natural feel for how things should work — this is Chitra. It is not learned. It was brought.',
+    now:'September 21, 2026 New Moon in Libra: lands in your 1st house, where both your Moon and Ketu live. This is the identity lunation — the sky\'s direct answer to your stated focus area. Whatever releases and whatever begins in your sense of self in September is Ketu doing its work, on schedule.'
+  },
+  dasha:{
+    glyph:'♃',title:'Jupiter Mahadasha · 2013–2029',coords:'Vimshottari Dasha · 16-Year Jupiter Period',
+    what:'The Vimshottari Dasha system is a 120-year cycle of planetary periods, each planet governing your life for a set number of years in sequence. The Mahadasha (major period) sets the overarching theme; within it, Antardashas (sub-periods) add shorter chapters. You are in Jupiter\'s Mahadasha — Jupiter governs your life from 2013 to 2029.',
+    you:'<p>Your <strong>Jupiter Mahadasha runs from 2013 to 2029</strong>. Jupiter is exalted in your 10th house — meaning Jupiter, the planet of expansion and recognition, is at its maximum power in the house of career. Every chapter of your life since age 9 has had Jupiter\'s hand quietly in it, building your professional foundation.</p><p><strong>Jupiter–Mars antardasha (now through November 2026):</strong> Mars rules your 2nd house (money) and 7th house (Rahu, partnerships). This sub-period is specifically about earning through physical, disciplined work and laying the groundwork for the partnerships that come next. The crane is this period made material.</p><p><strong>Jupiter–Rahu antardasha (November 2026 – February 2029):</strong> Rahu in your 7th house. Over two years of your greatest expansion coming through extraordinary partnerships and unconventional moves. The person or opportunity that arrives in late 2026 or 2027 that feels urgent, fated, and accelerating — that is this period activating.</p>',
+    nakshatra:'',
+    now:'The Mahadasha system means you are not in a random moment. You are in a Jupiter period, in a Jupiter-Mars sub-period, under a Jupiter transit through your 10th house. The concentration of Jupiter energy in your professional life right now is not coincidence. It is the system doing what it was designed to do.'
+  },
+  'sun-w':{
+    glyph:'☉',title:'Western Sun · Leo 11°',coords:'Tropical Leo 11° · Western Astrology',
+    what:'In Western (tropical) astrology, the Sun represents your core identity, your conscious self, and the essence of who you are in this lifetime. Leo is the sign ruled by the Sun itself.',
+    you:'<p>Your Western Sun is in <strong>Leo 11°</strong>. Leo is the sign of the creative, the generous, the person who wants to matter and be seen. Leo energy at its best is radiant, warm, and magnetic — it lights up a room not by trying to but by simply being present in it.</p><p>The interesting thing: in Vedic astrology, your Leo Sun falls in your <strong>11th house</strong> (income, community, gains) — not your 1st house. So your Leo-ness isn\'t just self-expression for its own sake. It\'s connected to what you build with others, what you earn, the community you attract. Your Leo shines most when it\'s in service of something larger than performance.</p>',
+    nakshatra:'Leo Sun at 11° in Vedic nakshatra: this falls in Magha nakshatra (0°–13°20\' Leo). Magha is the nakshatra of ancestors, earned thrones, and inherited authority. There is something about your birthright — your lineage, what you\'ve been handed and what you\'ve earned — that defines your Leo identity.',
+    now:'Leo season is your birthday season — the Sun returns to natal Leo 11° on August 4th every year. Your solar return (birthday) sets the tone for the year ahead. The year that begins August 4, 2026 — turning 23 under Jupiter transiting your 11th house — is one of abundance, community, and income expansion.'
+  },
+  'moon-w':{
+    glyph:'☽',title:'Western Moon · Scorpio 7°',coords:'Tropical Scorpio 7° · Western Astrology',
+    what:'In Western astrology, the Moon represents your emotional nature, instinctual responses, and inner world. The sign of your Moon describes how you feel and what you need emotionally to feel safe, seen, and whole.',
+    you:'<p>Your Western Moon is in <strong>Scorpio 7°</strong>. Scorpio Moon is the most intense placement in the zodiac — you feel everything at extraordinary depth, you see beneath surfaces others never access, and you need emotional experiences that are real, not performed. Small talk feels hollow. Shallow relationships feel draining. You are drawn to what has substance beneath it.</p><p>Scorpio Moon people rarely show all of what they feel. The emotional world inside them is vast, but the expression is selective and strategic. This is not coldness — it\'s the understanding that not everyone deserves full access to your interior. The people who get to know your Scorpio Moon are people who\'ve earned it.</p><p>Leo Sun (Western) + Scorpio Moon: this is a fascinating tension. The Leo wants to be seen and celebrated. The Scorpio Moon wants to be known at depth, not just admired at surface. Integrating these two means finding the people who can both celebrate you and know you — and not settling for one without the other.</p>',
+    nakshatra:'In Vedic astrology, your Scorpio Moon (tropical) translates to Libra 13° (sidereal) — Swati nakshatra. Both systems arrive at the same truth from different angles: you are emotionally independent (Swati, the wind) and emotionally intense (Scorpio Moon). Both are true simultaneously.',
+    now:'Your Vedic Moon in Swati (1st house) and your Western Moon in Scorpio are two lenses on the same interior. Vedic: freedom, independence, wind-like movement. Western: depth, intensity, selectivity with emotional access. Put them together: you need profound freedom AND profound depth. Both conditions. Neither is optional.'
+  },
+  'rising-w':{
+    glyph:'↑',title:'Western Rising · Scorpio 20°',coords:'Tropical Scorpio 20° · Western Astrology',
+    what:'The Western Rising sign (Ascendant) describes the mask you wear, your first impression, and how you instinctively approach new situations and environments. In Western astrology, the Rising is calculated the same way as Vedic — the sign on the eastern horizon at birth — but without the sidereal correction.',
+    you:'<p>Your Western Rising is <strong>Scorpio 20°</strong>. Scorpio Rising people have a natural magnetism that operates before they speak. There is presence, intensity, and a sense of depth that others pick up immediately — sometimes without knowing why they feel compelled. People either feel very drawn to Scorpio Rising or slightly unsettled by them. Both reactions are to the same thing: the sense that something significant is beneath the surface.</p><p>Scorpio Rising also means you tend to observe before you reveal. You enter situations watching rather than immediately performing. You assess. You take in information. And then you decide what — and who — is worth your energy.</p><p>Combined with your Vedic Libra Rising: two sides of the same presence. Libra Rising (Vedic) is graceful, balanced, interested in the quality of what\'s being built. Scorpio Rising (Western) is magnetic, penetrating, impossible to fully read. Together: the person in the room who is simultaneously beautiful and slightly uncanny.</p>',
+    nakshatra:'',
+    now:'Your Vedic Rising (Libra) governs the Jyotish system, dashas, and house calculations used throughout this planner. Your Western Rising (Scorpio) adds context to your psychological presentation and first-impression energy. Both inform the dark, bold aesthetic you chose — Scorpio Rising chose those colors as much as any conscious preference did.'
+  }
+};
+
+function showExplainer(key) {
+  const d = CHART_EXPLAINER[key];
+  if (!d) return;
+  document.getElementById('pex-glyph').textContent = d.glyph;
+  document.getElementById('pex-title').textContent = d.title;
+  document.getElementById('pex-coords').textContent = d.coords;
+  document.getElementById('pex-what').textContent = d.what;
+  document.getElementById('pex-you').innerHTML = d.you;
+  const nak = document.getElementById('pex-nakshatra');
+  if (d.nakshatra) { nak.style.display='block'; nak.innerHTML='<strong style="color:var(--text-dim)">✦ Nakshatra</strong><br>' + d.nakshatra; }
+  else { nak.style.display='none'; }
+  const now = document.getElementById('pex-now');
+  if (d.now) { now.style.display='block'; now.innerHTML='<strong>✦ Watch This in Real Time</strong><br>' + d.now; }
+  else { now.style.display='none'; }
+  document.getElementById('pexModal').classList.add('open');
+}
+function closePex() { document.getElementById('pexModal').classList.remove('open'); }
+document.getElementById('pexModal').addEventListener('click', e => { if (e.target === e.currentTarget) closePex(); });
 </script>
 </body>
 </html>
