@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andie's Life Navigation Planner 2026–2027 · EAUCO</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #0C1410;
+  --card:        #141D14;
+  --card2:       #1A2518;
+  --crimson:     #7A1823;
+  --crimson-mid: #A63545;
+  --crimson-light:#C87080;
+  --gold:        #C09030;
+  --gold-light:  #D4AA55;
+  --gold-bg:     rgba(192,144,48,0.07);
+  --green-dark:  #0F2018;
+  --green-mid:   #1E3D25;
+  --text:        #EDE5D5;
+  --text-dim:    #A89880;
+  --text-light:  #6A5A48;
+  --border:      rgba(255,255,255,0.07);
+  --border-gold: rgba(192,144,48,0.25);
+  --shadow:      rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.outer{display:flex;min-height:100vh;}
+.sidebar{width:244px;flex-shrink:0;background:var(--green-dark);border-right:1px solid var(--border);padding:28px 18px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.main{flex:1;padding:28px 28px 60px;max-width:920px;}
+@media(max-width:760px){.outer{flex-direction:column;}.sidebar{width:100%;height:auto;position:relative;}.main{padding:20px 16px 60px;}}
+.sb-brand{font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--gold);letter-spacing:0.06em;margin-bottom:5px;}
+.sb-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:300;color:var(--text);line-height:1.2;margin-bottom:3px;}
+.sb-tagline{font-size:0.62rem;color:var(--text-light);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.sb-section{margin-bottom:16px;}
+.sb-label{font-size:0.57rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-light);margin-bottom:7px;}
+.sb-item{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;gap:5px;}
+.sb-planet{font-size:0.7rem;color:var(--text-dim);white-space:nowrap;}
+.sb-place{font-size:0.67rem;color:var(--crimson-light);text-align:right;line-height:1.3;}
+.sb-divider{border:none;border-top:1px solid var(--border);margin:12px 0;}
+.sb-dasha{background:var(--green-mid);border-radius:8px;padding:11px;margin-bottom:12px;}
+.sb-dasha-main{font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--gold);margin-bottom:2px;}
+.sb-dasha-sub{font-size:0.65rem;color:var(--text-dim);line-height:1.5;}
+.sb-note{font-size:0.65rem;color:var(--text-light);line-height:1.6;font-style:italic;}
+.today-btn{display:block;width:100%;background:var(--crimson);color:var(--text);border:none;border-radius:8px;padding:9px 12px;font-family:'Inter',sans-serif;font-size:0.73rem;font-weight:500;cursor:pointer;margin-top:14px;letter-spacing:0.04em;transition:background 0.2s;}
+.today-btn:hover{background:var(--crimson-mid);}
+.month-nav{margin-top:12px;}
+.month-nav-btn{display:block;width:100%;text-align:left;background:none;border:none;color:var(--text-dim);font-family:'Inter',sans-serif;font-size:0.7rem;padding:4px 8px;cursor:pointer;border-radius:5px;transition:all 0.15s;}
+.month-nav-btn:hover,.month-nav-btn.active{background:var(--green-mid);color:var(--text);}
+.today-card{background:var(--card);border-radius:14px;padding:22px 24px;margin-bottom:24px;border-left:3px solid var(--crimson);box-shadow:0 2px 16px var(--shadow);}
+.tc-eyebrow{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--crimson-light);margin-bottom:6px;}
+.tc-date{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:var(--text);margin-bottom:2px;line-height:1.1;}
+.tc-planet{font-size:0.72rem;color:var(--gold);margin-bottom:12px;letter-spacing:0.04em;}
+.tc-body{font-size:0.82rem;color:var(--text-dim);line-height:1.8;}
+.tc-tip{background:var(--green-dark);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:0.75rem;color:var(--text-dim);line-height:1.7;border-left:2px solid var(--gold);}
+.tc-moon{font-size:0.72rem;color:var(--text-light);margin-top:10px;letter-spacing:0.02em;}
+.month-section{margin-bottom:48px;}
+.month-header{margin-bottom:18px;}
+.month-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--text);line-height:1.1;}
+.month-subtitle{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--crimson-light);margin-top:3px;}
+.overview-card{background:var(--card);border-radius:12px;padding:20px 22px;margin-bottom:16px;border-top:2px solid var(--crimson);box-shadow:0 1px 8px var(--shadow);}
+.ov-theme{font-family:'Cormorant Garamond',serif;font-size:1.12rem;color:var(--gold);margin-bottom:8px;}
+.ov-body{font-size:0.8rem;color:var(--text-dim);line-height:1.8;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:520px){.two-col{grid-template-columns:1fr;}}
+.oc-card{background:var(--card);border-radius:10px;padding:16px 18px;box-shadow:0 1px 6px var(--shadow);}
+.oc-label{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;}
+.oc-card.opp .oc-label{color:var(--gold);}
+.oc-card.caut .oc-label{color:var(--crimson-light);}
+.oc-list{list-style:none;}
+.oc-list li{font-size:0.76rem;color:var(--text-dim);line-height:1.7;padding-left:12px;position:relative;margin-bottom:3px;}
+.oc-list li::before{content:'✦';position:absolute;left:0;font-size:0.55rem;top:4px;}
+.oc-card.opp .oc-list li::before{color:var(--gold);}
+.oc-card.caut .oc-list li::before{color:var(--crimson-light);}
+.week-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
+@media(max-width:520px){.week-grid{grid-template-columns:1fr;}}
+.week-card{background:var(--card);border-radius:9px;padding:14px 16px;box-shadow:0 1px 5px var(--shadow);}
+.wk-label{font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;}
+.wk-theme{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--text);margin-bottom:4px;}
+.wk-body{font-size:0.73rem;color:var(--text-dim);line-height:1.65;}
+.cal-wrap{background:var(--card);border-radius:12px;padding:18px;margin-bottom:16px;box-shadow:0 1px 8px var(--shadow);}
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.cal-title{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-dow{text-align:center;font-size:0.57rem;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-light);padding:4px 0;}
+.cal-day{background:var(--card2);border-radius:6px;min-height:44px;padding:4px 5px;cursor:pointer;transition:all 0.15s;position:relative;}
+.cal-day:hover{background:var(--green-mid);}
+.cal-day.today{border:1.5px solid var(--crimson);background:rgba(122,24,35,0.15);}
+.cal-day.other-month{opacity:0.3;}
+.cal-day.key-date{border-top:2px solid var(--gold);}
+.cal-day .day-num{font-size:0.7rem;color:var(--text-dim);}
+.cal-day.today .day-num{color:var(--crimson-light);font-weight:500;}
+.cal-day .day-note{font-size:0.54rem;color:var(--gold);margin-top:2px;line-height:1.3;}
+.cal-day .note-dot{width:5px;height:5px;background:var(--crimson-mid);border-radius:50%;position:absolute;bottom:4px;right:4px;}
+.cal-day.birthday{border:1.5px solid var(--gold);background:rgba(192,144,48,0.1);}
+.journal-section{background:var(--card);border-radius:10px;padding:18px 20px;margin-bottom:8px;box-shadow:0 1px 6px var(--shadow);}
+.journal-label{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;}
+.journal-prompt{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--text-dim);font-style:italic;margin-bottom:10px;line-height:1.5;}
+.journal-area{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'Inter',sans-serif;font-size:0.8rem;color:var(--text);min-height:88px;resize:vertical;line-height:1.7;outline:none;}
+.journal-area:focus{border-color:rgba(192,144,48,0.4);}
+.journal-save{background:none;border:1px solid var(--border-gold);color:var(--gold);border-radius:20px;padding:6px 16px;font-family:'Inter',sans-serif;font-size:0.7rem;cursor:pointer;margin-top:8px;transition:all 0.2s;}
+.journal-save:hover{background:var(--gold-bg);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border-radius:16px;padding:28px 26px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.6);border-top:3px solid var(--crimson);}
+.modal-close{float:right;background:none;border:none;color:var(--text-light);font-size:1.2rem;cursor:pointer;line-height:1;margin-top:-4px;}
+.modal-date{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text);margin-bottom:2px;}
+.modal-planet{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.modal-body{font-size:0.8rem;color:var(--text-dim);line-height:1.8;margin-bottom:14px;}
+.modal-moon{font-size:0.72rem;color:var(--text-light);margin-bottom:14px;}
+.modal-section{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.modal-section-label{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;}
+.mood-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.mood-btn{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.72rem;color:var(--text-dim);cursor:pointer;transition:all 0.15s;}
+.mood-btn:hover,.mood-btn.active{border-color:var(--crimson-mid);background:rgba(122,24,35,0.2);color:var(--crimson-light);}
+.modal-note{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:0.78rem;color:var(--text);min-height:70px;resize:vertical;line-height:1.6;outline:none;margin-top:4px;}
+.modal-note:focus{border-color:rgba(192,144,48,0.3);}
+.modal-save{background:var(--crimson);color:var(--text);border:none;border-radius:20px;padding:8px 20px;font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:500;cursor:pointer;margin-top:8px;transition:background 0.2s;}
+.modal-save:hover{background:var(--crimson-mid);}
+.modal-todos{list-style:none;margin-top:4px;}
+.modal-todos li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.77rem;color:var(--text-dim);cursor:pointer;}
+.modal-todos li input[type=checkbox]{accent-color:var(--crimson-mid);}
+.kd-banner{background:linear-gradient(135deg,var(--crimson) 0%,#3A0A12 100%);border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+.kd-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px;}
+.kd-desc{font-size:0.75rem;color:rgba(255,255,255,0.7);line-height:1.7;}
+.bday-card{background:linear-gradient(135deg,var(--crimson) 0%,#2A0A10 100%);border-radius:14px;padding:24px 22px;margin-bottom:16px;text-align:center;box-shadow:0 4px 20px rgba(122,24,35,0.4);}
+.bday-glyph{font-size:2rem;margin-bottom:10px;}
+.bday-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--text);margin-bottom:6px;}
+.bday-sub{font-size:0.78rem;color:rgba(255,255,255,0.65);line-height:1.7;}
+.index-section{background:var(--card);border-radius:12px;padding:22px;margin-bottom:16px;box-shadow:0 1px 8px var(--shadow);}
+.index-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text);margin-bottom:6px;}
+.index-sub{font-size:0.75rem;color:var(--text-dim);line-height:1.7;margin-bottom:18px;}
+.index-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+@media(max-width:480px){.index-grid{grid-template-columns:1fr;}}
+.index-term{background:var(--card2);border-radius:8px;padding:12px 14px;border-left:2px solid var(--border);transition:all 0.15s;}
+.index-term:hover{border-left-color:var(--gold);background:var(--green-mid);}
+.it-name{font-size:0.78rem;color:var(--text);font-weight:500;margin-bottom:3px;}
+.it-body{font-size:0.7rem;color:var(--text-dim);line-height:1.6;}
+.it-andie{font-size:0.68rem;color:var(--crimson-light);margin-top:4px;line-height:1.5;font-style:italic;}
+.confetti-piece{position:fixed;width:8px;height:8px;border-radius:2px;pointer-events:none;z-index:999;animation:fall linear forwards;}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
+.glyph-divider{text-align:center;color:var(--text-light);font-size:0.7rem;letter-spacing:0.2em;margin:24px 0;}
+.section-heading{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--text);margin-bottom:18px;}
+</style>
+</head>
+<body>
+<div class="outer">
+<aside class="sidebar">
+  <div class="sb-brand">✦ EAUCO</div>
+  <div class="sb-name">Andie<br>Galloway</div>
+  <div class="sb-tagline">Life Navigation Planner · 2026–2027</div>
+  <div class="sb-section">
+    <div class="sb-label">Vedic Chart · Libra Rising</div>
+    <div class="sb-item"><span class="sb-planet">☉ Sun</span><span class="sb-place">Cancer 18° · 10th · Ashlesha</span></div>
+    <div class="sb-item"><span class="sb-planet">☽ Moon</span><span class="sb-place">Libra 13° · 1st · Swati</span></div>
+    <div class="sb-item"><span class="sb-planet">☿ Mercury Rx</span><span class="sb-place">Cancer 9° · 10th · Pushya</span></div>
+    <div class="sb-item"><span class="sb-planet">♀ Venus</span><span class="sb-place">Leo 16° · 11th · P.Phalguni</span></div>
+    <div class="sb-item"><span class="sb-planet">♂ Mars</span><span class="sb-place">Aquarius 15° · 5th · Shatabishak</span></div>
+    <div class="sb-item"><span class="sb-planet">♃ Jupiter ★</span><span class="sb-place">Cancer 18° · 10th · Ashlesha</span></div>
+    <div class="sb-item"><span class="sb-planet">♄ Saturn</span><span class="sb-place">Taurus 15° · 8th · Rohini</span></div>
+    <div class="sb-item"><span class="sb-planet">☊ Rahu</span><span class="sb-place">Aries 5° · 7th · Ashwini</span></div>
+    <div class="sb-item"><span class="sb-planet">☋ Ketu</span><span class="sb-place">Libra 5° · 1st · Chitra</span></div>
+  </div>
+  <hr class="sb-divider">
+  <div class="sb-dasha">
+    <div class="sb-dasha-main">♃ Jupiter Mahadasha</div>
+    <div class="sb-dasha-sub">2013–2029 · Career, Wisdom, Expansion</div>
+    <div class="sb-dasha-sub" style="margin-top:5px;color:var(--crimson-light)">Jup–Mars → Nov 2026<br>Jup–Rahu Nov 2026–Feb 2029</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-label">Western (Tropical)</div>
+    <div class="sb-note">Sun Leo 11° · Rising Scorpio 20°</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-label">Houses · Libra Rising</div>
+    <div class="sb-note">1st Libra · 2nd Scorpio · 3rd Sag<br>4th Cap · 5th Aquarius · 6th Pisces<br>7th Aries · 8th Taurus · 9th Gemini<br>10th Cancer · 11th Leo · 12th Virgo</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-label">Birth Data</div>
+    <div class="sb-note">August 4, 2003 · 4:35 AM MDT<br>Afton, Wyoming · Libra Rising<br>Vishakha nakshatra · 26.8°</div>
+  </div>
+  <button class="today-btn" onclick="goToday()">↑ Today</button>
+  <div class="month-nav" id="monthNav"></div>
+</aside>
+
+<main class="main" id="mainContent">
+  <div class="today-card">
+    <div class="tc-eyebrow">✦ Today</div>
+    <div class="tc-date" id="tc-date">—</div>
+    <div class="tc-planet" id="tc-planet">—</div>
+    <div class="tc-body" id="tc-body">—</div>
+    <div class="tc-tip" id="tc-tip"></div>
+    <div class="tc-moon" id="tc-moon"></div>
+  </div>
+
+  <div class="month-section" id="month-2026-6">
+    <div class="month-header">
+      <div class="month-title">June 2026</div>
+      <div class="month-subtitle">Jupiter Exalted in Your 10th House · The Crane is the Chart</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">Jupiter is transiting Cancer — your 10th house of career. And in Cancer, Jupiter is exalted. You are in your professional prime.</div>
+      <div class="ov-body">Right now Jupiter is moving through Cancer — your 10th house of career, public life, and long-term reputation. Jupiter in Cancer is exalted, meaning it operates at maximum power. And you already have natal Sun, Mercury, and Jupiter all in this same 10th house. Transiting Jupiter is conjuncting your natal Jupiter — a once-every-12-years return. Getting your own crane is not a coincidence. This is your chart working exactly as designed: exalted Jupiter in the career house, in the dasha of Jupiter, rewarding disciplined physical work (Jupiter–Mars antardasha) with professional recognition and independent achievement. June is the height of this transit. The New Moon on June 25 lands in Cancer — your 10th — seeding a new professional beginning. You are in the chapter your entire chart was building toward.</div>
+    </div>
+    <div class="two-col">
+      <div class="oc-card opp">
+        <div class="oc-label">✦ Opportunities</div>
+        <ul class="oc-list">
+          <li>Career achievement is at peak support — ask for what you've earned</li>
+          <li>New Moon June 25 in your 10th — professional intention setting moment</li>
+          <li>Public recognition and reputation building in real time</li>
+          <li>Physical work translating into lasting professional standing</li>
+        </ul>
+      </div>
+      <div class="oc-card caut">
+        <div class="oc-label">✦ Watch For</div>
+        <ul class="oc-list">
+          <li>Ashlesha nakshatra in 10th: intensity and complexity beneath the surface</li>
+          <li>Don't let career demands consume emotional and physical wellbeing</li>
+          <li>Moon in your 1st house — your emotional needs don't pause for career surges</li>
+        </ul>
+      </div>
+    </div>
+    <div class="week-grid">
+      <div class="week-card">
+        <div class="wk-label">Week of June 22</div>
+        <div class="wk-theme">Entering the Planner · Career Peak</div>
+        <div class="wk-body">Your planner opens during one of the most professionally significant months of your life so far. Jupiter in your 10th is at maximum strength. What you build or accomplish now leaves a lasting mark. The crane is yours. Use it deliberately.</div>
+      </div>
+      <div class="week-card">
+        <div class="wk-label">June 25 · New Moon</div>
+        <div class="wk-theme">New Moon in Your Career House</div>
+        <div class="wk-body">The New Moon in Cancer lands in your 10th house — a new professional beginning is planted here. With Jupiter also transiting this house, this seed is watered by the most expansive planet. What do you want your career to look like in 6 months? Write it down now.</div>
+      </div>
+    </div>
+    <div id="cal-2026-6" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ June 2026 · Monthly Journal</div>
+      <div class="journal-prompt">"What have I built professionally that I haven't fully acknowledged yet? What does this career chapter mean to me beyond the achievement itself?"</div>
+      <textarea class="journal-area" id="journal-2026-6" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2026-6')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2026-7">
+    <div class="month-header">
+      <div class="month-title">July 2026</div>
+      <div class="month-subtitle">Career Achievement → Income Expansion · Jupiter Transitions · Birthday Approaches</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">What you built in the 10th is about to become income and recognition in the 11th.</div>
+      <div class="ov-body">July is the bridge month. Jupiter is still in your 10th through most of July, but it's preparing to enter Leo — your 11th house of income, gains, community, and long-term dreams. Venus (your chart ruler as Libra Rising) is already placed in Leo 16° natally, in Purva Phalguni. Jupiter entering Leo means Jupiter meets your natal Venus — a transit of abundance, beauty, and financial expansion. The New Moon on July 24 lands in Leo, your 11th house — planting the seed of this next chapter. You turn 23 on August 4th. July holds all of this at once: the career chapter completing, the income chapter opening, and the birthday threshold. Something you've been building through physical discipline and patient work is about to generate a different kind of return.</div>
+    </div>
+    <div class="two-col">
+      <div class="oc-card opp">
+        <div class="oc-label">✦ Opportunities</div>
+        <ul class="oc-list">
+          <li>New Moon July 24 in 11th — income, community, long-term goal seeds</li>
+          <li>Professional reputation translating into financial opportunity</li>
+          <li>Your network is expanding around what you've built</li>
+          <li>Pre-birthday clarity: what do you want at 23 that you didn't have at 22?</li>
+        </ul>
+      </div>
+      <div class="oc-card caut">
+        <div class="oc-label">✦ Watch For</div>
+        <ul class="oc-list">
+          <li>Pre-birthday reflective energy — feel it, don't get lost in it</li>
+          <li>Jupiter shifting houses = a transition period, not a setback</li>
+          <li>Don't burn out before your birthday; rest is productive</li>
+        </ul>
+      </div>
+    </div>
+    <div class="week-grid">
+      <div class="week-card">
+        <div class="wk-label">Week of June 29</div>
+        <div class="wk-theme">Jupiter Still in Career House</div>
+        <div class="wk-body">Final weeks of Jupiter in your 10th. What professional move is there left to make? What do you want to have established before this transit shifts to income and community?</div>
+      </div>
+      <div class="week-card">
+        <div class="wk-label">Week of July 6</div>
+        <div class="wk-theme">Sun in Your Career House</div>
+        <div class="wk-body">Sun moves through Cancer (your 10th) through mid-July. Your public life and professional self are illuminated. Be visible. Show up to what you've built. Let people see the work.</div>
+      </div>
+      <div class="week-card">
+        <div class="wk-label">Week of July 13</div>
+        <div class="wk-theme">Full Moon · Foundation Check</div>
+        <div class="wk-body">The Full Moon lights up your 4th house (Capricorn — home, roots, inner foundation). As the career chapter matures, what does your inner foundation need? What in your private world is asking for attention?</div>
+      </div>
+      <div class="week-card">
+        <div class="wk-label">Week of July 20 · NM Jul 24</div>
+        <div class="wk-theme">New Moon in 11th · Income Seed</div>
+        <div class="wk-body">New Moon in Leo — your 11th house. Set an intention around income, community, and long-term goals. This is the seed Jupiter will water when it enters Leo. Plant deliberately. What financial or community dream begins here?</div>
+      </div>
+    </div>
+    <div id="cal-2026-7" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ July 2026 · Monthly Journal</div>
+      <div class="journal-prompt">"What do I want to earn, build financially, and belong to at 23 that I haven't had at 22?"</div>
+      <textarea class="journal-area" id="journal-2026-7" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2026-7')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2026-8">
+    <div class="bday-card">
+      <div class="bday-glyph">♎</div>
+      <div class="bday-title">August 4 — You Turn 23</div>
+      <div class="bday-sub">Libra Rising · Vishakha nakshatra · Jupiter enters your 11th house this month<br>The career achievement is yours. Now the abundance begins to flow.</div>
+    </div>
+    <div class="month-header">
+      <div class="month-title">August 2026</div>
+      <div class="month-subtitle">Birthday Month · Jupiter Enters 11th · Income + Community Expand</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">♃ Jupiter enters Leo — your 11th house — and meets your natal Venus. Financial and community expansion begins.</div>
+      <div class="ov-body">You turn 23 on August 4. Leo season is now — the Sun moves through Leo (your 11th house) all month, and Jupiter enters Leo shortly after, joining natal Venus (Purva Phalguni) already there. Venus is your chart ruler as Libra Rising. Jupiter meeting your Lagna lord in the house of income and gains is a profound expansion transit — your community grows, your income streams open, and what you've built professionally begins to generate abundance in a new form. August 23 brings a New Moon in Virgo — your 12th house of inner life and rest — the one quiet invitation to integrate before September's identity chapter begins. Your birthday sets the solar year in motion. Receive everything that arrives today.</div>
+    </div>
+    <div class="two-col">
+      <div class="oc-card opp">
+        <div class="oc-label">✦ Opportunities</div>
+        <ul class="oc-list">
+          <li>Jupiter meets natal Venus in 11th — income, community, gains expand</li>
+          <li>New financial opportunities connected to your professional reputation</li>
+          <li>Community connections that support your long-term goals</li>
+          <li>Birthday solar return sets an abundance-oriented year in motion</li>
+        </ul>
+      </div>
+      <div class="oc-card caut">
+        <div class="oc-label">✦ Watch For</div>
+        <ul class="oc-list">
+          <li>Jupiter in 11th can scatter focus if you say yes to everything — prioritize</li>
+          <li>Aug 23 NM in your 12th: rest is not optional, it's the preparation for September</li>
+          <li>Libra Rising tendency to give more than you receive — practice receiving on your birthday</li>
+        </ul>
+      </div>
+    </div>
+    <div class="week-grid">
+      <div class="week-card">
+        <div class="wk-label">July 27 – August 3</div>
+        <div class="wk-theme">Pre-Birthday Week</div>
+        <div class="wk-body">Last week of 22. Complete what needs completing. Let your community show up for you. Rest before the birthday opens the new year.</div>
+      </div>
+      <div class="week-card">
+        <div class="wk-label">August 4 — BIRTHDAY</div>
+        <div class="wk-theme">Solar Return · 23 Begins</div>
+        <div class="wk-body">Sun returns to natal Leo 11°. Your year ahead is set in motion. Libra Rising is the sign of relationship — but today: practice receiving completely. Let yourself be celebrated without deflecting. This is allowed.</div>
+      </div>
+      <div class="week-card">
+        <div class="wk-label">Week of August 10</div>
+        <div class="wk-theme">Jupiter Enters 11th</div>
+        <div class="wk-body">Jupiter crosses into Leo, your 11th house, meeting natal Venus. A financial and community chapter opens. Something that was career achievement is now generating income. Ask for what you're worth. Let people pay for what you do.</div>
+      </div>
+      <div class="week-card">
+        <div class="wk-label">August 23 · New Moon</div>
+        <div class="wk-theme">New Moon in 12th · Rest + Integration</div>
+        <div class="wk-body">New Moon in Virgo — your 12th house. After the expansion of August, the 12th house asks you to integrate. What inner work needs to happen before September's identity chapter arrives? Rest without guilt.</div>
+      </div>
+    </div>
+    <div id="cal-2026-8" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ August 2026 · Birthday Journal</div>
+      <div class="journal-prompt">"What does abundance look like at 23? What has this career chapter shown me about what I'm actually capable of?"</div>
+      <textarea class="journal-area" id="journal-2026-8" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2026-8')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2026-9">
+    <div class="month-header">
+      <div class="month-title">September 2026</div>
+      <div class="month-subtitle">New Moon in Your 1st House · Identity · Who Are You Now?</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">September 21: New Moon in Libra — your Rising sign, your Moon's natal house. The sky addresses your stated focus: identity.</div>
+      <div class="ov-body">September 21 brings a New Moon in Libra — landing directly in your 1st house, your Lagna. Your natal Moon is already here in Swati nakshatra, and Ketu (past life mastery and release) is also here in Chitra. A new moon in your 1st house is the most personally significant lunation of the year: a new beginning of self, identity, and how you move through the world. You listed identity as one of your two focus areas in your intake. This is the month the sky delivers exactly what you asked for. Ketu in your 1st house creates the central question of your life: who am I outside of how others define me? This September new moon plants a new answer. What is the version of you that exists regardless of external recognition? September is when you begin building your relationship to that version.</div>
+    </div>
+    <div class="two-col">
+      <div class="oc-card opp">
+        <div class="oc-label">✦ Opportunities</div>
+        <ul class="oc-list">
+          <li>New Moon in 1st house — begin something that defines who you are internally</li>
+          <li>Physical body, appearance, presence — all ready for new beginnings</li>
+          <li>Ketu in 1st releasing old identity structures that no longer fit</li>
+          <li>Jupiter still in 11th expanding income and community simultaneously</li>
+        </ul>
+      </div>
+      <div class="oc-card caut">
+        <div class="oc-label">✦ Watch For</div>
+        <ul class="oc-list">
+          <li>Libra Rising shadow: defining yourself through others' reactions. This month: go internal.</li>
+          <li>Ketu in 1st can bring identity dissolution — this is the work, not the problem</li>
+          <li>New Moon in 1st changes how others see you — some may not adjust quickly</li>
+        </ul>
+      </div>
+    </div>
+    <div id="cal-2026-9" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ September 2026 · Identity Journal</div>
+      <div class="journal-prompt">"Who am I when no one is watching? What does the new version of me look, feel, and move like from the inside?"</div>
+      <textarea class="journal-area" id="journal-2026-9" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2026-9')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2026-10">
+    <div class="month-header">
+      <div class="month-title">October 2026</div>
+      <div class="month-subtitle">New Moon in 2nd House · Money + Values · What Is Your Labor Worth?</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">New Moon in Scorpio — your 2nd house. Money, values, and what you build materially.</div>
+      <div class="ov-body">October's New Moon lands in Scorpio — your 2nd house of money, material resources, and values. Scorpio in the 2nd has intensity around financial matters; it's not casual. Combined with Jupiter still expanding your 11th house income streams, October is the month to get serious about what you earn, own, and believe you're worth. The crane is a tool that generates income. This month: what financial system or practice begins? What do you believe about your own financial worth — and is that belief keeping pace with what you've actually achieved? A new financial beginning is seeded here.</div>
+    </div>
+    <div id="cal-2026-10" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ October 2026 · Monthly Journal</div>
+      <div class="journal-prompt">"What do I want to own, earn, and save in the next year? What financial belief am I ready to upgrade?"</div>
+      <textarea class="journal-area" id="journal-2026-10" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2026-10')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2026-11">
+    <div class="month-header">
+      <div class="month-title">November 2026</div>
+      <div class="month-subtitle">Jupiter–Rahu Antardasha Begins · 3rd House New Moon · Your Voice</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">♃–☊ Jupiter–Rahu antardasha begins November 2026. Two years and three months of unconventional expansion through partnership and ambition.</div>
+      <div class="ov-body">The Jupiter–Rahu antardasha runs November 2026 through February 2029. Rahu is in your 7th house (Aries, Ashwini nakshatra) — the house of one-on-one partnerships, committed relationships, and how you meet the world through others. During this antardasha, your greatest growth comes through partnerships: who you build with, the catalyzing one-on-one dynamics that push you further than you'd go alone. Rahu in Ashwini moves fast — and in the 7th, the partnerships that arrive in this period will feel urgent, fated, and accelerating. November also brings a New Moon in Sagittarius — your 3rd house of communication, voice, and how you share your mind. Something wants to be said. The Jupiter–Rahu period begins here. Say it.</div>
+    </div>
+    <div class="two-col">
+      <div class="oc-card opp">
+        <div class="oc-label">✦ Opportunities</div>
+        <ul class="oc-list">
+          <li>Jupiter–Rahu: unconventional partnerships accelerate your expansion</li>
+          <li>3rd house New Moon — begin writing, speaking, sharing your perspective</li>
+          <li>Your voice and what you know have more reach than you realize</li>
+          <li>Rahu in 7th: a partnership arrives that catalyzes something significant</li>
+        </ul>
+      </div>
+      <div class="oc-card caut">
+        <div class="oc-label">✦ Watch For</div>
+        <ul class="oc-list">
+          <li>Rahu's hunger: voracious, fast-moving. Ground before committing to everything.</li>
+          <li>7th house Rahu in antardasha: partners who arrive may be intense and catalyzing</li>
+          <li>Don't speak before you're clear — 3rd house activation means words land hard now</li>
+        </ul>
+      </div>
+    </div>
+    <div id="cal-2026-11" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ November 2026 · Monthly Journal</div>
+      <div class="journal-prompt">"What partnership — work, creative, personal — would actually accelerate who I'm becoming? And what do I want to say that I haven't said yet?"</div>
+      <textarea class="journal-area" id="journal-2026-11" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2026-11')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2026-12">
+    <div class="month-header">
+      <div class="month-title">December 2026</div>
+      <div class="month-subtitle">4th House New Moon · Home + Foundation · End the Year in Your Roots</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">December brings the new moon to your 4th house. What does home feel like after everything 2026 changed?</div>
+      <div class="ov-body">December's New Moon in Capricorn lands in your 4th house — the house of home, roots, family, and inner foundation. Capricorn rules your 4th, giving it a quality of structure and long-term foundation-building. This is the year-end moment to ask: what does home mean now? What has the career achievement, the identity work, the income expansion, the antardasha shift done to your inner sense of security? Jupiter is still in your 11th, expanding community. But December wants you to come home to yourself. Rest in what's real and solid. You built a significant amount this year — in the career, in your sense of self, in your financial world. December honors that in the quiet.</div>
+    </div>
+    <div id="cal-2026-12" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ December 2026 · Year-End Journal</div>
+      <div class="journal-prompt">"What did 2026 make me? What does home — the inner kind — feel like after everything this year changed?"</div>
+      <textarea class="journal-area" id="journal-2026-12" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2026-12')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2027-1">
+    <div class="month-header">
+      <div class="month-title">January 2027</div>
+      <div class="month-subtitle">New Moon in 4th House · Jupiter–Rahu Running · Building from the Root</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">2027 opens in the 4th house. Foundation, home, and inner security are what you're building now.</div>
+      <div class="ov-body">January continues the Capricorn 4th house energy from December — a second new moon here, or it moves into Aquarius (your 5th house of creativity and Mars's natal sign). Jupiter and Rahu antardasha are running; partnerships are intensifying and 11th house income is expanding. 2027 begins with a stability you didn't have a year ago. The 4th house new moon is a renewal of your inner foundation — your sense of where you come from and where you're planting yourself as you build forward into what Jupiter–Rahu is pulling you toward.</div>
+    </div>
+    <div id="cal-2027-1" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ January 2027 · Monthly Journal</div>
+      <div class="journal-prompt">"What foundation am I building now that will support me in five years? What does stability mean on my own terms?"</div>
+      <textarea class="journal-area" id="journal-2027-1" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2027-1')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2027-2">
+    <div class="month-header">
+      <div class="month-title">February 2027</div>
+      <div class="month-subtitle">New Moon in 5th House · Mars Activated · Creative Fire</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">New Moon in Aquarius — your 5th house, Mars's natal sign. Original, unconventional creative expression ignites.</div>
+      <div class="ov-body">February's New Moon lands in Aquarius — your 5th house, where Mars lives in Shatabishak nakshatra. The 5th house is creativity, joy, bold self-expression, romance, and speculative energy. Mars in Aquarius is unconventional and original — your creative drive doesn't follow the mainstream. Shatabishak is the nakshatra of the healer who works outside the norm, who sees what others miss. Whatever creative or joyful project begins in February carries that quality: it's original, it heals something in the process of being made, and it does not look like everyone else's version. You listed healing as a focus area. The 5th house and healing meet in February.</div>
+    </div>
+    <div id="cal-2027-2" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ February 2027 · Monthly Journal</div>
+      <div class="journal-prompt">"What do I want to create or express that has nothing to do with productivity — just pure joy and creative fire?"</div>
+      <textarea class="journal-area" id="journal-2027-2" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2027-2')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2027-3">
+    <div class="month-header">
+      <div class="month-title">March 2027</div>
+      <div class="month-subtitle">New Moon in 6th House · Health + Habits · Your Daily Life</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">New Moon in Pisces — your 6th house of health, habits, and daily practice. You named habits as a focus area. This is that month.</div>
+      <div class="ov-body">You specifically named habits as one of your two focus areas for this planner year. March delivers exactly that: New Moon in Pisces, your 6th house of health, daily work, and routine. Pisces in the 6th gives your daily life a spiritual, healing quality — your habits and health practices work best when they carry meaning, not just function. What daily routine or healing practice begins in March? How do you want to structure a regular day? The 6th house is the house of showing up consistently. It's where the crane gets operated every morning. The quality of your daily life determines the quality of everything else. March is when you design that intentionally.</div>
+    </div>
+    <div id="cal-2027-3" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ March 2027 · Habits Journal</div>
+      <div class="journal-prompt">"What does my body need daily that I keep postponing? What one habit, built now, would change everything in six months?"</div>
+      <textarea class="journal-area" id="journal-2027-3" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2027-3')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2027-4">
+    <div class="month-header">
+      <div class="month-title">April 2027</div>
+      <div class="month-subtitle">New Moon in 7th House · Rahu Activated · Partnership Revelation</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">New Moon in Aries — your 7th house, conjunct natal Rahu. A partnership moment that changes direction.</div>
+      <div class="ov-body">April's New Moon in Aries lands in your 7th house near natal Rahu in Ashwini nakshatra. You are in the Jupiter–Rahu antardasha: your greatest expansion right now comes through who you build alongside. A New Moon conjunct natal Rahu in the 7th is a significant arrival in partnership territory — someone or something new in your one-on-one world, or a dramatic shift in an existing relationship. Ashwini moves fast — this won't feel slow or gradual. Pay close attention to who arrives in April 2027. The person or partnership that comes through this new moon is part of your expansion story whether or not it's immediately obvious.</div>
+    </div>
+    <div id="cal-2027-4" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ April 2027 · Partnership Journal</div>
+      <div class="journal-prompt">"Who is showing me something about myself that I can't see alone? What does a truly equal, accelerating partnership look like for me?"</div>
+      <textarea class="journal-area" id="journal-2027-4" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2027-4')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2027-5">
+    <div class="month-header">
+      <div class="month-title">May 2027</div>
+      <div class="month-subtitle">New Moon in 8th House · Saturn's House · Deep Transformation</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">New Moon in Taurus — your 8th house, where natal Saturn lives in Rohini. What is completing a long transformation cycle?</div>
+      <div class="ov-body">May's New Moon in Taurus lands in your 8th house — transformation, death and rebirth, hidden matters, shared resources, and what lives below the surface. Saturn sits here natally in Rohini nakshatra. For Libra Rising, the 8th house is Taurus — ruled by Venus, your chart ruler. Transformation in May touches Venusian themes: beauty, self-worth, what you hold onto, and what you've outgrown. The 8th house under a new moon is a genuine ending and beginning — not dramatic, but real. Rohini is fertile: what you release becomes the soil for the next chapter. Something Saturn has been slowly working on since you were born is completing a stage. Honor it.</div>
+    </div>
+    <div id="cal-2027-5" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ May 2027 · Transformation Journal</div>
+      <div class="journal-prompt">"What is ending in my life that I need to honor rather than resist? What wants to be reborn from what I'm releasing?"</div>
+      <textarea class="journal-area" id="journal-2027-5" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2027-5')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2027-6">
+    <div class="month-header">
+      <div class="month-title">June 2027</div>
+      <div class="month-subtitle">One Year Later · 9th House New Moon · Your Truth Expands</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">A full year has passed since this planner began. The June New Moon is in your 9th house of higher knowing.</div>
+      <div class="ov-body">June 2027 marks one complete year. You entered June 2026 with Jupiter in your 10th house building career momentum — the crane, the professional recognition, the chapter you'd been working toward. Now you're here. The New Moon in Gemini lands in your 9th house of higher knowing, truth-seeking, travel, and how you understand the world. Gemini in the 9th: your wisdom comes through curiosity and connection of many ideas. Mercury rules this house — your mind and your philosophical understanding are linked. What do you know now that you didn't know a year ago? What is true about yourself or the world that this year revealed? The 9th house new moon asks you to claim it.</div>
+    </div>
+    <div id="cal-2027-6" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ June 2027 · One Year In Journal</div>
+      <div class="journal-prompt">"What do I know now that I didn't know when this planner began? What truth about my life am I ready to claim publicly?"</div>
+      <textarea class="journal-area" id="journal-2027-6" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2027-6')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-2027-7">
+    <div class="month-header">
+      <div class="month-title">July 2027</div>
+      <div class="month-subtitle">New Moon in 10th House · Cycle Completes · Birthday Approaches Again</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-theme">The cycle completes where it began: New Moon in your 10th house. You are not the same person who opened this planner.</div>
+      <div class="ov-body">July 2027's New Moon returns to Cancer — your 10th house of career and public life. The cycle is complete. The planner opened with Jupiter activating your career in June 2026. Now, 14 months later, the 10th house opens again — but you've been through identity, income, communication, foundation, creativity, habits, partnership, transformation, and higher knowing. You turn 24 in August 2027. Jupiter is in your 11th house (Leo) approaching the end of its Leo transit, about to move to Virgo (your 12th) — a new 12-year cycle begins. July 2027 is the threshold. In your 10th house, with your natal Sun, Mercury, and exalted Jupiter — what do you want to build next?</div>
+    </div>
+    <div id="cal-2027-7" class="cal-wrap"></div>
+    <div class="journal-section">
+      <div class="journal-label">✦ July 2027 · Closing Journal</div>
+      <div class="journal-prompt">"Who am I professionally and personally at the end of this planner year — compared to who I was when it began? What do I carry into 24?"</div>
+      <textarea class="journal-area" id="journal-2027-7" placeholder="Write here — saved in your browser..."></textarea>
+      <button class="journal-save" onclick="saveJournal('2027-7')">Save</button>
+    </div>
+  </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <div class="month-section" id="month-index">
+    <div class="section-heading">Learn the Language</div>
+    <div class="index-section">
+      <div class="index-title">✦ Your Chart Glossary</div>
+      <div class="index-sub">You said you've never had your chart read. Every term in this planner is explained here, through your specific placements.</div>
+      <div class="index-grid">
+        <div class="index-term">
+          <div class="it-name">Rising Sign (Lagna)</div>
+          <div class="it-body">The sign on the eastern horizon at your birth moment — the lens through which you meet the world and it meets you. Determines the entire house system.</div>
+          <div class="it-andie">Libra Rising at 26.8°, Vishakha nakshatra. Venus rules your entire chart (Libra = Venus). Vishakha: the archer who doesn't stop until the target falls. Focused, achieving, all-or-nothing with what you care about.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">10th House Stellium</div>
+          <div class="it-body">Three or more planets in the career house. One of the most powerful career signatures in Vedic astrology — the entire professional life is heavily marked.</div>
+          <div class="it-andie">Sun, Mercury (Rx), and Jupiter (exalted) all in Cancer in your 10th house. Getting your crane is this stellium made physical. You were built to be known for what you do with your hands and your authority. The 10th house rewards patience and it rewards you.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Jupiter Exalted in 10th</div>
+          <div class="it-body">Jupiter in its sign of exaltation (Cancer) in the house of career. One of the most powerful career placements in Vedic astrology — recognition, authority, and expansion through professional life.</div>
+          <div class="it-andie">Your Jupiter is exalted in Cancer in your 10th house. This placement builds over a lifetime — the older you get, the more it unfolds. What you're building professionally at 23 is the foundation of the reputation you'll have at 35 and 45. Jupiter rewards the patient builder.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Moon in 1st House (Lagna)</div>
+          <div class="it-body">The Moon in the house of self and identity. Creates a deeply feeling, emotionally present personality — emotions live in the body and in how you show up in the world.</div>
+          <div class="it-andie">Moon in Libra 13°, Swati nakshatra, in your 1st house. Swati is the wind — independent, self-directed, impossible to contain. Your emotional freedom is as essential as your physical freedom. Your Moon in the 1st means people feel your emotional state even when you don't speak it.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Ketu in 1st House</div>
+          <div class="it-body">Ketu represents past life mastery and what you're now releasing or refining. In the 1st house: past life mastery of self, identity, and presence — and the current life question of who you are beyond past definitions.</div>
+          <div class="it-andie">Ketu in Libra 5°, Chitra nakshatra. This is why identity is your focus. Ketu in 1st: who are you outside of how anyone else defines you? Chitra is the cosmic architect, the jewel-maker. Past life mastery of building and crafting beautiful things — this is why operating precision equipment feels natural, not foreign.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Venus as Lagna Lord</div>
+          <div class="it-body">For Libra Rising, Venus rules the Ascendant — making Venus the most important planet in the chart. The quality of Venus describes the quality of your whole life.</div>
+          <div class="it-andie">Venus in Leo 16°, Purva Phalguni nakshatra, in your 11th house of income and gains. Purva Phalguni is ruled by Venus itself — double Venus energy. You earn through beauty, creativity, and authentic community connection. Lagna lord in 11th is a classic abundance placement.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Rahu in 7th House</div>
+          <div class="it-body">Rahu shows the growth edge — where you're being pulled that feels new, hungry, and slightly overwhelming. In the 7th: growth through one-on-one partnerships and how you meet others.</div>
+          <div class="it-andie">Rahu in Aries 5°, Ashwini nakshatra, in your 7th. You grow most through direct, pioneering one-on-one partnerships. Ashwini: the divine physicians who move fast and heal quickly. Your most significant expansion in 2026–2029 comes through who you build alongside.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Saturn in 8th House</div>
+          <div class="it-body">Saturn in the house of transformation, depth, and what lives below the surface. Slow, patient transformation work that builds to something permanent.</div>
+          <div class="it-andie">Saturn in Taurus 15°, Rohini nakshatra, in your 8th house. Rohini is the most fertile nakshatra — what you transform becomes soil for the next thing. Saturn in the 8th works slowly and completely. What has been shifting beneath the surface in you for years is almost always closer to completion than it feels.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Nakshatra</div>
+          <div class="it-body">The 27 lunar mansions of Vedic astrology — 13°20' each, more precise than signs. They reveal the soul-quality and texture of any planet's expression.</div>
+          <div class="it-andie">Rising: Vishakha (focused, achieving). Moon: Swati (the wind, independent). Venus: Purva Phalguni (creative abundance, rest is sacred). Jupiter: Ashlesha (penetrating wisdom, depth of power). Saturn: Rohini (fertile, material, beloved). Mercury: Pushya (nourishing, teaching). Rahu: Ashwini (fast healer). Ketu: Chitra (architect, craftsperson).</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Vimshottari Dasha</div>
+          <div class="it-body">120-year planetary period system — which planet governs your life chapter right now and for how long.</div>
+          <div class="it-andie">Jupiter Mahadasha 2013–2029. Jupiter governs your career house and is exalted there. This entire Mahadasha has been building professional recognition and wisdom. Jupiter–Mars antardasha (physical work, independent achievement = crane) ends Nov 2026. Jupiter–Rahu begins: unconventional partnerships, accelerated expansion, 2+ years.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">Mercury Retrograde (Natal)</div>
+          <div class="it-body">Mercury retrograde in the birth chart means the mind works inward before outward — deep processing before external communication.</div>
+          <div class="it-andie">Mercury Rx in Cancer 9°, Pushya nakshatra, in your 10th house. Your career intelligence is internalized — you know things about work situations before you can articulate them. Pushya is the most nourishing nakshatra. Your professional mind nourishes what it touches. Trust the slow knowing.</div>
+        </div>
+        <div class="index-term">
+          <div class="it-name">New Moon in Your 1st House</div>
+          <div class="it-body">The most personally significant lunation of the year — a new beginning of self, identity, body, and how you move through the world.</div>
+          <div class="it-andie">September 21, 2026: New Moon in Libra — your Rising sign, your Moon's house. Your natal Moon is here. Ketu is here. This is the identity lunation you asked for when you said your focus area was identity. What begins in September about who you are — plant it deliberately. The chart is listening.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+
+<div class="modal-overlay" id="dayModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-date" id="md-date">—</div>
+    <div class="modal-planet" id="md-planet">—</div>
+    <div id="md-kd-banner"></div>
+    <div class="modal-body" id="md-body">—</div>
+    <div class="modal-moon" id="md-moon"></div>
+    <div class="modal-section">
+      <div class="modal-section-label">How are you feeling?</div>
+      <div class="mood-row">
+        <button class="mood-btn" onclick="setMood(this,'grounded')">Grounded</button>
+        <button class="mood-btn" onclick="setMood(this,'energized')">Energized</button>
+        <button class="mood-btn" onclick="setMood(this,'reflective')">Reflective</button>
+        <button class="mood-btn" onclick="setMood(this,'scattered')">Scattered</button>
+        <button class="mood-btn" onclick="setMood(this,'powerful')">Powerful</button>
+        <button class="mood-btn" onclick="setMood(this,'tender')">Tender</button>
+      </div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-label">Today's Practices</div>
+      <ul class="modal-todos" id="md-todos"></ul>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-label">Notes</div>
+      <textarea class="modal-note" id="md-notes" placeholder="What's alive for you today..."></textarea>
+      <br><button class="modal-save" onclick="saveDay()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PLANET_DAYS = {
+  0:{planet:'Sun ☉',theme:'Career · Public Life · Recognition',body:'Sunday is the Sun\'s day — your Sun lives in Cancer in your 10th house of career, public life, and reputation. On Sundays: what am I building that will be seen? What professional truth am I standing in? Your 10th house stellium (Sun + Mercury + exalted Jupiter) makes career your central story. Sunday honors that story.'},
+  1:{planet:'Moon ☽',theme:'Identity · Emotional Truth · Inner Life',body:'Monday is the Moon\'s day — your Moon lives in Libra 13°, Swati nakshatra, in your 1st house of self. The Moon in your Lagna means emotions are woven into your identity. On Moon days: what does your body actually feel? Swati is the wind — you cannot be contained by whatever is trying to limit you today. Move toward what feels free.'},
+  2:{planet:'Mars ♂',theme:'Creativity · Bold Action · Joy',body:'Tuesday is Mars\'s day — Mars lives in Aquarius in your 5th house of creativity, joy, and bold self-expression. Shatabishak nakshatra: original, unconventional, healing through creation. On Tuesdays: make something, take the creative risk, do the thing that excites you. Your 5th house runs on fire and originality.'},
+  3:{planet:'Mercury ☿',theme:'Career Intelligence · Process · Depth',body:'Wednesday is Mercury\'s day — your Mercury is retrograde in Cancer in your 10th house. Your professional intelligence goes deep before it surfaces into speech. On Wednesdays: process the career situation before communicating about it. Write before you send. Think before you commit. Trust the knowing that arrives before the words.'},
+  4:{planet:'Jupiter ♃',theme:'Exalted Career Blessing · Trust the Process',body:'Thursday is Jupiter\'s day — your Jupiter is exalted in Cancer in your 10th house. On Thursdays: trust what\'s building even when you can\'t see all of it yet. Jupiter in the 10th rewards patient, consistent effort. What you show up to consistently is being seen and registered by the universe, even when no one tells you so.'},
+  5:{planet:'Venus ♀',theme:'Income · Community · Lagna Lord',body:'Friday is Venus\'s day — Venus is your chart ruler (Libra Rising), sitting in Leo in your 11th house of income, gains, and community. On Fridays: show up to your community, tend to what you earn, let something beautiful into the day. Purva Phalguni: rest without guilt. Your Lagna lord in the 11th means abundance is your natural frequency.'},
+  6:{planet:'Saturn ♄',theme:'Transformation · Depth · What Lasts',body:'Saturday is Saturn\'s day — Saturn lives in Taurus, Rohini nakshatra, in your 8th house. The 8th house is slow, deep transformation — what lives below the surface, what is ending so something else can begin. On Saturdays: go inward. What is completing a cycle? What are you releasing? Rohini in the 8th: what you let go of becomes fertile ground.'}
+};
+
+const KEY_DATES = {
+  '2026-06-25':{title:'New Moon in Cancer · 10th House Career Seed',body:'New Moon in Cancer — your 10th house of career, public life, and reputation. A new professional beginning is seeded here. Jupiter is also transiting your 10th, watering this seed with its exalted power. What do you want your career to look like in 6 months? Write it down now. This lunation is one of the most professionally significant of the year.'},
+  '2026-07-09':{title:'Full Moon · 4th House · Home and Foundation',body:'Full Moon in Capricorn — your 4th house of home, roots, and inner foundation. As the career chapter matures, what in your private world is being illuminated? What does your home life or inner emotional world need attention right now?'},
+  '2026-07-24':{title:'New Moon in Leo · 11th House Income Seed',body:'New Moon in Leo — your 11th house of income, gains, and community. Venus is here natally. Jupiter is about to arrive. Plant an intention around what you want to earn, who you want in your community, and what long-term dream you\'re building toward. This seed will be watered by Jupiter entering Leo shortly after.'},
+  '2026-08-04':{title:'✦ Your 23rd Birthday · Solar Return',body:'Sun returns to natal Leo 11°. Your year ahead is set in motion today. Born with Moon in your 1st house and a career stellium in the 10th — today, both your emotional truth and your professional achievement are fully present. Receive everything. Practice receiving without deflecting. 23 begins today.'},
+  '2026-08-23':{title:'New Moon in Virgo · 12th House · Rest + Integration',body:'New Moon in Virgo — your 12th house. After the career explosion of June and the income opening of August, the 12th house invites you to rest and integrate. What needs to settle before September\'s identity chapter begins? What inner work is the foundation of everything you\'re building publicly?'},
+  '2026-09-07':{title:'Full Moon · 6th House · Daily Life Illuminated',body:'Full Moon in Pisces — your 6th house of health, daily work, and routines. What daily practice has taken root? What in your daily life needs adjustment? The 6th house is where you show up consistently every day — what does that showing up look like, and is it sustainable?'},
+  '2026-09-21':{title:'New Moon in Libra · Your 1st House · Identity',body:'New Moon in Libra — your Rising sign, your 1st house, your Moon\'s house. The most personally significant lunation of the year. A new beginning of self is seeded here. Whatever you\'re releasing about your old identity and building as the new one — plant it now. The sky is directly addressing your stated focus area: identity.'},
+  '2026-10-06':{title:'Full Moon in Aries · 7th House · Partnership Light',body:'Full Moon in Aries — your 7th house, where Rahu lives. An illumination in partnership territory. Who in your life is a mirror right now? What one-on-one relationship is showing you something important?'},
+  '2026-10-20':{title:'New Moon in Scorpio · 2nd House · Money and Values',body:'New Moon in Scorpio — your 2nd house of money, material resources, and values. A new financial or values-based beginning is seeded here. What do you want to earn and build materially? What do you believe you\'re worth?'},
+  '2026-11-05':{title:'Full Moon in Taurus · 8th House · What Transforms',body:'Full Moon in Taurus — your 8th house, Saturn\'s natal house. Something below the surface comes to light. A completion or revelation in the territory of transformation. What has been slowly completing a cycle beneath the surface of your life?'},
+  '2026-11-20':{title:'New Moon in Sagittarius · 3rd House · Voice',body:'New Moon in Sagittarius — your 3rd house of communication and how you share your mind. Jupiter–Rahu antardasha has begun. A new beginning in your voice, your communication, how you share what you know. Something wants to be said. Say it.'},
+  '2026-12-19':{title:'New Moon in Sagittarius · 3rd House Continues',body:'A second 3rd house activation. Your voice, your communication, and what you share are being opened. Jupiter–Rahu is running — your expansion comes through who you connect with and what you communicate. Write the thing, say the thing.'},
+  '2027-01-18':{title:'New Moon in Capricorn · 4th House · Foundation',body:'New Moon in Capricorn — your 4th house of home and inner foundation. What does your inner life and home need as a new beginning? Your career (10th) is the public face. Your 4th house is what holds it up. What foundation is ready to begin fresh?'},
+  '2027-02-17':{title:'New Moon in Aquarius · 5th House · Mars Activation',body:'New Moon in Aquarius — your 5th house, Mars\'s natal sign. Creativity, bold expression, and joy all activate. A new creative beginning that is original, unconventional, and healing. What do you want to make or express that has nothing to do with practicality?'},
+  '2027-03-18':{title:'New Moon in Pisces · 6th House · Habits + Health',body:'New Moon in Pisces — your 6th house of health, daily work, and habits. Your stated focus area. What daily practice or health ritual begins now? Your 6th house is Pisces — your habits work best when they carry meaning, not just function. Design your daily life intentionally.'},
+  '2027-04-17':{title:'New Moon in Aries · 7th House · Rahu Activated',body:'New Moon in Aries near natal Rahu in your 7th house. A significant partnership beginning or revelation in your one-on-one world. You\'re in Jupiter–Rahu antardasha — this partnership is part of your expansion story. Pay close attention to who arrives this month.'},
+  '2027-05-16':{title:'New Moon in Taurus · 8th House · Transformation',body:'New Moon in Taurus — your 8th house, Saturn\'s natal sign. A new beginning in transformation territory. Something completes. What is ready to be reborn? What has Saturn been slowly working toward in your 8th house that is now reaching a stage of completion?'},
+  '2027-06-15':{title:'New Moon in Gemini · 9th House · Higher Knowing',body:'New Moon in Gemini — your 9th house of higher knowing, truth, and how you understand the world. A year since this planner began. What do you know now? What truth about yourself or the world has this year revealed? Claim it. The 9th house wants you to expand into what you now know is true.'},
+  '2027-07-14':{title:'New Moon in Cancer · 10th House · Cycle Completes',body:'The cycle closes where it began: New Moon in Cancer in your 10th house of career. You entered this planner with Jupiter activating this exact house. Now 14 months later, the 10th opens again — but you have been through identity, income, communication, foundation, creativity, habits, partnership, transformation, and higher knowing. You are not the same. Begin again from this new self.'}
+};
+
+const NM_ANCHORS=[['2026-06-25',93],['2026-07-24',121],['2026-08-23',151],['2026-09-21',179],['2026-10-20',207],['2026-11-20',237],['2026-12-19',267],['2027-01-18',297],['2027-02-17',327],['2027-03-18',357],['2027-04-17',27],['2027-05-16',55],['2027-06-15',83],['2027-07-14',111]];
+
+const DAILY_TIPS=[
+  'Libra Rising: Venus rules your entire chart — beauty, balance, and relationship quality everything in your life. Vishakha nakshatra rising means you do not stop until the target falls. You are both the grace and the relentless aim.',
+  'Your 10th house has Sun, Mercury (Rx), and Jupiter exalted — three planets in the career house. You were built to be known for what you do professionally. Getting the crane is not a coincidence. This is your chart operating as designed.',
+  'Moon in 1st house in Swati: emotions live in your body and your presence. People feel your state even when you don\'t say it. Swati is the wind — independent, impossible to contain. Your emotional freedom is not optional; it is the foundation.',
+  'Ketu in your 1st house (Chitra nakshatra): you arrived with past-life mastery of the self and of craftsmanship. Things that feel naturally easy — building, making things with precision, operating equipment — are past-life gifts. Trust the ease.',
+  'Rahu in your 7th (Aries, Ashwini): your greatest growth comes through how you meet others one-on-one. The partnerships that challenge you are on purpose. The person who catalyzes you is often exactly who Rahu sent.',
+  'Venus as your Lagna lord in Leo 11th: your income and community are tied to who you authentically are. You don\'t have to perform for people to gain from knowing you. Purva Phalguni: abundance flows when you\'re most genuinely yourself.',
+  'Jupiter in Cancer 10th, exalted: what you build professionally at 23 is the foundation of who you are known as at 35. The crane is the beginning, not the peak. Jupiter in the 10th rewards the long game.',
+  'Saturn in Taurus 8th (Rohini): you have a gift for patient, complete transformation. Saturn in the 8th works slowly and permanently. What has been shifting beneath the surface in you is almost always closer to complete than it feels.',
+  'Mercury Rx in Cancer 10th: your professional intelligence is internalized. You process career decisions deep before you communicate them. This is not a flaw — this is how you avoid regret. Trust the knowing before the words.',
+  'Ashlesha nakshatra (Sun and Jupiter in 10th): the coiled serpent — deep, penetrating, able to see beneath the surface of any professional situation. Your career intelligence reads what others miss. Trust it.',
+  'Swati nakshatra Moon in 1st: Swati is ruled by Vayu, the wind god. You cannot be contained by structure you didn\'t choose. Your emotional nature requires freedom of movement — a life or relationship that boxes you in will eventually lose you.',
+  'Shatabishak nakshatra (Mars, 5th): 100 healers, those who work outside the mainstream. Your creativity is original, unconventional, and healing in the making. Trust the creative impulse that doesn\'t look like everyone else\'s version.',
+  'Pushya nakshatra (Mercury, 10th): the most nourishing nakshatra, associated with nurturing and feeding others. The way you communicate about your work — explain things, operate things, show people — nourishes those around you. You probably don\'t realize the effect.',
+  'Rohini nakshatra (Saturn, 8th): the Moon\'s most beloved resting place. The most fertile nakshatra. Your transformations are ultimately generative — what you go through in the 8th breaks down what needs breaking and grows what was waiting underneath.',
+  'Ashwini nakshatra (Rahu, 7th): divine physicians who heal with speed. Your partnerships can catalyze healing in both directions. The best partnerships in your life will move fast and transform something that needed transforming.',
+  'Chitra nakshatra (Ketu, 1st): the cosmic architect. You carry past-life mastery of building and designing. The craft instinct — precision, beauty, operational skill — comes from Chitra. Operating a crane is a Chitra act. This is in your bones.',
+  'Vishakha nakshatra (your Rising): Indra and Agni — heaven and fire. Vishakha does not give up on its goals. You will aim at the same target through changing seasons until it falls. This is not stubbornness; this is your dharmic design.',
+  'Your 3rd house is Sagittarius — Jupiter-ruled. Voice and communication carry an expansive, philosophical quality. When you share what you actually know, people grow. The 3rd house is also siblings, local environment, your hands and short journeys.',
+  'Your 9th house is Gemini — Mercury-ruled. Higher knowing comes through curiosity and synthesis of many ideas. You find truth through many angles, not one lineage. Your path of understanding is wide, curious, and self-directed.',
+  'Your 12th house is Virgo — Mercury-ruled. Your inner life and rest have a Virgo quality: analytical, detail-noticing, working out problems. When you\'re alone you\'re often solving something. Your 12th house processes what the surface mind hasn\'t caught up to yet.',
+  'Libra Rising shadow: needing external approval to feel real. Your Ketu in 1st and your identity focus both point at the same healing: learn who you are when no one is watching. That version is the one the chart is organized around.',
+  'Jupiter–Rahu antardasha (Nov 2026–Feb 2029): Rahu in your 7th, Jupiter in your 11th. The partnerships that arrive during this antardasha are not accidental. They come to expand your income, your community, and your understanding of yourself through encounter.',
+  'Sun in Cancer 10th: your career has a Cancer quality — protective, deeply caring about what you build, emotionally invested in the people you work with. Cancer in the 10th: your authority comes from genuine care, not from force.',
+  'Jupiter–Mars antardasha (now until Nov 2026): Mars rules your 2nd (money/values) and 7th (partnerships/Rahu). This antardasha is specifically about earning through disciplined physical work and laying the foundation for the partnerships that will accelerate you next. The crane is Jupiter–Mars material.',
+  'The progression of your year: 10th (career) → 11th (income) → 12th (rest) → 1st (identity) → 2nd (money) → 3rd (voice) → 4th (home) → 5th (creativity) → 6th (habits) → 7th (partnership) → 8th (transformation) → 9th (truth) → 10th (again). A full spiral of your life.',
+  'You have three planets in Cancer in your 10th house. Cancer protects, nourishes, and cares about what it holds. Your career is one where you protect or operate something that matters — and you care deeply about doing it right.',
+  'Libra is the scales — not because you\'re always balanced, but because you\'re always seeking the right measure of things. Vishakha Rising adds: you seek balance through total focus on the goal. The forked branch always converges at the top.',
+  'Your 6th house is Pisces — spiritual, healing, meaningful. Pure mechanical routine without purpose will exhaust you. The crane works because it matters — because what it lifts matters. When your daily work has meaning, your energy is unlimited.',
+  'You were born at 4:35 AM — before sunrise, in the deep dark. Pre-dawn births in Vedic tradition carry a strong quality of inner richness and vivid inner life. Your 12th house energy (rest, depth, what\'s hidden) is more present than it appears from the outside.',
+  'Jupiter Mahadasha through 2029. You\'ve been in it since age 9. Every chapter of your life since then has had Jupiter\'s exalted career hand in it. You are not starting from scratch at 23. You are arriving at a chapter that was always being built.'
+];
+
+const DOW_TODOS={
+  0:['Honor your 10th house — acknowledge your professional work today','Show up as the career self you\'ve built','Make or progress on a career-related decision','Spend time in sunlight — Sun rules career and vitality','Rest if needed: recovery is part of performance'],
+  1:['Check in honestly with your emotional state — Moon in 1st, it lives in your body','Write what you actually feel, not what seems balanced','Do one thing that is purely self-directed today — Swati practice','Tend to your physical body: it IS your 1st house','Let your presence just be without performing'],
+  2:['Do something creative, bold, or joyful — Mars in 5th house rules Tuesday','Make something with your hands or take a creative risk','Take a physical action you\'ve been postponing','Move your body — Mars needs physical output','Say or make the bold thing you\'ve been holding back'],
+  3:['Process before communicating — Mercury Rx in 10th goes deep first','Write something professional you haven\'t shared yet','Allow extra time before responding to work matters','Work on something that requires deep concentration','Trust the slow professional knowing — it\'s more accurate than you think'],
+  4:['Trust what is building beneath the surface in your career','Work on the long-term professional thing, not the urgent thing','Practice gratitude for what Jupiter has quietly organized','Invest in your future self professionally','Notice what arrived without forcing — that is Jupiter'],
+  5:['Connect with your community — 11th house, your income and belonging','Do something beautiful: create, dress, cook with intention','Work on income-generating or community-building activities','Rest or luxuriate — Purva Phalguni: rest is productive','Honor Venus your Lagna lord: make Friday beautiful'],
+  6:['Do the inner work: journal, process, go quiet','Honor what is transforming in you — Saturn in 8th on Saturdays','Work on long-term foundations, not immediate rewards','Release something you\'ve been holding: belief, habit, pattern','Do the thing that future you will thank you for, not the one that feels good now']
+};
+
+const DAY_GUIDES={
+  '2026-06-22':{theme:'First Day · Jupiter in Career House · Moon in Scorpio',body:'Your planner opens today. The Moon is moving through Scorpio — your 2nd house of values and resources. Jupiter is in Cancer, your 10th house, exalted. You are in the professional chapter this entire dasha has been building toward. The crane is yours. Write down what you\'ve accomplished. The 10th house needs acknowledgment as much as achievement.'},
+  '2026-06-23':{theme:'Mars Day · 5th House Creativity · Bold Action',body:'Tuesday: Mars in your 5th house (Aquarius, Shatabishak). Today is for bold, original action — creative, physical, expressive. What is the thing you\'ve been wanting to do that excites you? Your 5th house runs on fire. Feed it today.'},
+  '2026-06-24':{theme:'Mercury Day · Career Intelligence · Process First',body:'Wednesday. Your Mercury Rx in Cancer in your 10th house: professional mind goes deep before it speaks. What do you know about your career situation that you haven\'t fully articulated yet? Let the knowing come first. The words will follow when they\'re ready.'},
+  '2026-06-25':{theme:'✦ New Moon in Your 10th House · Career Seed',body:'New Moon in Cancer — your 10th house. A new professional beginning is planted here, amplified by Jupiter also transiting this house. What do you want your career to look like in 6 months? Write it clearly. You have the most powerful career planet on the same degree in Cancer. This seed matters.'},
+  '2026-06-26':{theme:'Venus Day · Lagna Lord · Income and Community',body:'Friday. Venus rules your entire chart and sits in your 11th house of income and community. Today: show up to your community, tend to what you earn, let beauty into the day. Your Lagna lord in the 11th is a natural abundance frequency. Fridays honor it.'},
+  '2026-06-27':{theme:'Saturn Day · 8th House Depth · What Transforms',body:'Saturday. Saturn in Taurus, Rohini, in your 8th house. Today: what is completing a cycle beneath the surface? What are you in the middle of releasing that you haven\'t fully acknowledged? Saturn in Rohini: the transformation is fertile — what you let go of grows into the next thing.'},
+  '2026-06-28':{theme:'Sun Day · Career Planet · Rest and Radiance',body:'Sunday. Your Sun lives in your 10th house. On Sundays, the career and public self are highlighted. But Sunday is also for rest. You don\'t have to perform to embody the 10th house today. Just be the person you\'ve built. The work is already happening.'},
+  '2026-06-29':{theme:'Moon Day · Your 1st House Energy · Emotional Truth',body:'Monday. Your Moon lives in your 1st house in Swati. On Moon days: what is your body telling you? Swati: you cannot be contained by whatever is trying to contain you today. Move toward what feels free, even in a small way.'},
+  '2026-06-30':{theme:'Mars Day · Last Day of June · Complete and Carry',body:'Last day of June. Mars rules your 5th (creativity) and 7th (Rahu, partnerships). What needs completing from June? What bold creative or relational move carries into July? Acknowledge what the Jupiter-in-10th energy of June built. It was significant.'},
+  '2026-07-01':{theme:'Mercury Day · July Opens · Career Mind Active',body:'July begins. Mercury in your 10th: your career intelligence is active and processing. What do you know about where you\'re going professionally that you haven\'t put into words yet? July is the bridge from career achievement into income and community. Your Mercury Rx is thinking it through.'}
+};
+
+const MONTHS=[[2026,6,'June 2026'],[2026,7,'July 2026'],[2026,8,'August 2026'],[2026,9,'September 2026'],[2026,10,'October 2026'],[2026,11,'November 2026'],[2026,12,'December 2026'],[2027,1,'January 2027'],[2027,2,'February 2027'],[2027,3,'March 2027'],[2027,4,'April 2027'],[2027,5,'May 2027'],[2027,6,'June 2027'],[2027,7,'July 2027']];
+
+function moonPhase(ds){
+  const date=new Date(ds+'T12:00:00');
+  let ref=null,refDeg=0;
+  for(let i=NM_ANCHORS.length-1;i>=0;i--){if(new Date(NM_ANCHORS[i][0])<=date){ref=new Date(NM_ANCHORS[i][0]);refDeg=NM_ANCHORS[i][1];break;}}
+  if(!ref){ref=new Date(NM_ANCHORS[0][0]);refDeg=NM_ANCHORS[0][1];}
+  const days=(date-ref)/86400000;
+  const deg=((refDeg+days*13.176)%360+360)%360;
+  const phases=[['🌑','New Moon'],['🌒','Waxing Crescent'],['🌓','First Quarter'],['🌔','Waxing Gibbous'],['🌕','Full Moon'],['🌖','Waning Gibbous'],['🌗','Last Quarter'],['🌘','Waning Crescent']];
+  const signs=['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+  return phases[Math.round(deg/360*8)%8][0]+' '+phases[Math.round(deg/360*8)%8][1]+' in '+signs[Math.floor(deg/30)];
+}
+
+function buildCal(year,month){
+  const wrap=document.getElementById('cal-'+year+'-'+month);
+  if(!wrap)return;
+  const state=getState();
+  const first=new Date(year,month-1,1).getDay();
+  const dim=new Date(year,month,0).getDate();
+  const prev=new Date(year,month-1,0).getDate();
+  const tds=getTodayStr();
+  let h='<div class="cal-nav"><span class="cal-title">'+new Date(year,month-1,1).toLocaleDateString('en-US',{month:'long',year:'numeric'})+'</span></div><div class="cal-grid">';
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>h+='<div class="cal-dow">'+d+'</div>');
+  for(let i=0;i<first;i++)h+='<div class="cal-day other-month"><span class="day-num">'+(prev-first+1+i)+'</span></div>';
+  for(let d=1;d<=dim;d++){
+    const ds=year+'-'+String(month).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    let cls='cal-day';
+    if(ds===tds)cls+=' today';
+    if(KEY_DATES[ds])cls+=' key-date';
+    if(ds==='2026-08-04'||ds==='2027-08-04')cls+=' birthday';
+    const hasNote=state['note-'+ds]||state['mood-'+ds];
+    const st=KEY_DATES[ds]?KEY_DATES[ds].title.split('·')[0].trim().substring(0,16):'';
+    h+='<div class="'+cls+'" onclick="openDay(\''+ds+'\')">'+'<span class="day-num">'+d+'</span>'+(st?'<div class="day-note">'+st+'</div>':'')+(hasNote?'<div class="note-dot"></div>':'')+'</div>';
+  }
+  const rem=(first+dim)%7;
+  if(rem>0)for(let i=1;i<=7-rem;i++)h+='<div class="cal-day other-month"><span class="day-num">'+i+'</span></div>';
+  h+='</div>';
+  wrap.innerHTML=h;
+}
+
+function getTodayStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+
+function buildToday(){
+  const d=new Date();const ds=getTodayStr();const dow=d.getDay();
+  const pd=PLANET_DAYS[dow];const guide=DAY_GUIDES[ds];
+  const tipIdx=(d.getDate()+d.getMonth()*31)%DAILY_TIPS.length;
+  document.getElementById('tc-date').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('tc-planet').textContent=pd.planet+' · '+pd.theme;
+  document.getElementById('tc-body').textContent=guide?guide.body:pd.body;
+  document.getElementById('tc-tip').textContent='✦ '+DAILY_TIPS[tipIdx];
+  document.getElementById('tc-moon').textContent=moonPhase(ds);
+  if(ds==='2026-08-04'||ds==='2027-08-04')fireworks();
+}
+
+let currentDay='';
+function openDay(ds){
+  currentDay=ds;
+  const d=new Date(ds+'T12:00:00');const dow=d.getDay();
+  const pd=PLANET_DAYS[dow];const guide=DAY_GUIDES[ds];const kd=KEY_DATES[ds];
+  const state=getState();
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  document.getElementById('md-date').textContent=days[dow]+', '+d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('md-planet').textContent=pd.planet+' · '+pd.theme;
+  document.getElementById('md-kd-banner').innerHTML=kd?'<div class="kd-banner"><div class="kd-title">'+kd.title+'</div><div class="kd-desc">'+kd.body+'</div></div>':'';
+  document.getElementById('md-body').textContent=guide?guide.body:pd.body;
+  document.getElementById('md-moon').textContent=moonPhase(ds);
+  const todos=DOW_TODOS[dow];
+  document.getElementById('md-todos').innerHTML=todos.map((t,i)=>{
+    const checked=state['todo-'+ds+'-'+i];
+    return '<li onclick="toggleTodo(\''+ds+'\','+i+',this)"><input type="checkbox"'+(checked?' checked':'')+'> '+t+'</li>';
+  }).join('');
+  const savedMood=state['mood-'+ds];
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===savedMood));
+  document.getElementById('md-notes').value=state['note-'+ds]||'';
+  document.getElementById('dayModal').classList.add('open');
+  if(ds==='2026-08-04'||ds==='2027-08-04')fireworks();
+}
+
+function closeModal(){document.getElementById('dayModal').classList.remove('open');}
+document.getElementById('dayModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+function setMood(btn,mood){
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const state=getState();state['mood-'+currentDay]=mood;saveState(state);
+}
+function toggleTodo(ds,idx,li){
+  const cb=li.querySelector('input');cb.checked=!cb.checked;
+  const state=getState();state['todo-'+ds+'-'+idx]=cb.checked;saveState(state);
+}
+function saveDay(){
+  const state=getState();state['note-'+currentDay]=document.getElementById('md-notes').value;saveState(state);closeModal();
+  const[y,m]=currentDay.split('-');buildCal(parseInt(y),parseInt(m));
+}
+function saveJournal(key){const state=getState();state['journal-'+key]=document.getElementById('journal-'+key).value;saveState(state);}
+function getState(){try{return JSON.parse(localStorage.getItem('andie-planner-v1'))||{};}catch{return{};}}
+function saveState(s){localStorage.setItem('andie-planner-v1',JSON.stringify(s));}
+
+function buildNav(){
+  let h='';
+  MONTHS.forEach(([y,m,label])=>h+='<button class="month-nav-btn" onclick="goMonth('+y+','+m+')">'+label+'</button>');
+  h+='<button class="month-nav-btn" onclick="goIndex()">✦ Chart Glossary</button>';
+  document.getElementById('monthNav').innerHTML=h;
+}
+function goMonth(y,m){document.getElementById('month-'+y+'-'+m)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function goIndex(){document.getElementById('month-index')?.scrollIntoView({behavior:'smooth',block:'start'});}
+function goToday(){
+  const ds=getTodayStr();const[y,m]=ds.split('-');
+  const el=document.getElementById('month-'+y+'-'+parseInt(m));
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  else document.getElementById('mainContent').scrollIntoView({behavior:'smooth'});
+}
+
+function fireworks(){
+  const colors=['#7A1823','#C09030','#D4AA55','#1E3D25','#A63545','#EDE5D5','#C87080'];
+  for(let i=0;i<65;i++){
+    const el=document.createElement('div');el.className='confetti-piece';
+    el.style.cssText='left:'+Math.random()*100+'%;top:-10px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+(1.5+Math.random()*2)+'s;animation-delay:'+Math.random()*0.6+'s;';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),3600);
+  }
+}
+
+function restoreJournals(){
+  const state=getState();
+  MONTHS.forEach(([y,m])=>{const key=y+'-'+m;const el=document.getElementById('journal-'+key);if(el&&state['journal-'+key])el.value=state['journal-'+key];});
+}
+
+window.addEventListener('DOMContentLoaded',()=>{buildToday();buildNav();MONTHS.forEach(([y,m])=>buildCal(y,m));restoreJournals();});
+</script>
+</body>
+</html>
