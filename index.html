@@ -30,7 +30,7 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 .outer{display:flex;min-height:100vh;}
-.sidebar{width:244px;flex-shrink:0;background:var(--green-dark);border-right:1px solid var(--border);padding:28px 18px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar{width:244px;flex-shrink:0;background:var(--green-dark);border-right:1px solid var(--border);padding:28px 18px;position:sticky;top:89px;height:calc(100vh - 89px);overflow-y:auto;}
 .main{flex:1;padding:28px 28px 60px;max-width:920px;}
 .mobile-chart-btn{display:none;width:100%;padding:9px 14px;margin-bottom:16px;background:var(--green-mid);border:1px solid var(--border-gold);border-radius:8px;color:var(--gold);font-size:0.75rem;letter-spacing:0.06em;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;}
 .mobile-chart-btn:hover{background:rgba(192,144,48,0.1);}
@@ -90,11 +90,47 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .jc-planet-chip.active{border-color:var(--border-gold);color:var(--gold);}
 .jc-realtime{background:var(--green-dark);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:0.75rem;color:var(--text-dim);line-height:1.7;border-left:2px solid var(--gold);}
 .jc-realtime strong{color:var(--gold-light);}
+/* ── TOP HEADER ── */
+.top-header{position:sticky;top:0;z-index:200;background:var(--bg);border-bottom:1px solid var(--border);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;}
+.top-header-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--gold);letter-spacing:0.02em;}
+.top-header-name em{font-style:italic;color:var(--moonlit);}
+.top-header-sub{font-size:0.6rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+.top-today-btn{background:var(--crimson);color:var(--text);border:none;border-radius:20px;padding:7px 16px;font-family:'Inter',sans-serif;font-size:0.72rem;cursor:pointer;letter-spacing:0.05em;transition:background 0.2s;white-space:nowrap;}
+.top-today-btn:hover{background:var(--crimson-mid);}
+/* ── MONTH NAV BAR ── */
+.month-nav-bar{position:sticky;top:49px;z-index:199;background:var(--green-dark);border-bottom:1px solid var(--border);overflow-x:auto;white-space:nowrap;padding:0 14px;scrollbar-width:none;}
+.month-nav-bar::-webkit-scrollbar{display:none;}
+.month-nav-bar button{background:none;border:none;color:var(--text-dim);font-family:'Inter',sans-serif;font-size:0.72rem;padding:10px 13px;cursor:pointer;border-bottom:2px solid transparent;letter-spacing:0.04em;transition:all 0.2s;white-space:nowrap;}
+.month-nav-bar button:hover{color:var(--gold);}
+.month-nav-bar button.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:500;}
+/* keep sidebar today-btn smaller for mobile */
 .today-btn{display:block;width:100%;background:var(--crimson);color:var(--text);border:none;border-radius:8px;padding:9px 12px;font-family:'Inter',sans-serif;font-size:0.73rem;font-weight:500;cursor:pointer;margin-top:14px;letter-spacing:0.04em;transition:background 0.2s;}
 .today-btn:hover{background:var(--crimson-mid);}
 .month-nav{margin-top:12px;}
 .month-nav-btn{display:block;width:100%;text-align:left;background:none;border:none;color:var(--text-dim);font-family:'Inter',sans-serif;font-size:0.7rem;padding:4px 8px;cursor:pointer;border-radius:5px;transition:all 0.15s;}
 .month-nav-btn:hover,.month-nav-btn.active{background:var(--green-mid);color:var(--text);}
+/* ── JOURNEY CHAPTER DROPDOWNS ── */
+.jc-toggle{background:none;border:none;width:100%;text-align:left;cursor:pointer;padding:0;display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+.jc-toggle-arrow{font-size:0.6rem;color:var(--text-light);letter-spacing:0.08em;flex-shrink:0;transition:transform 0.2s;}
+.journey-chapter.open .jc-toggle-arrow{transform:rotate(180deg);}
+.jc-body{display:none;margin-top:14px;}
+.journey-chapter.open .jc-body{display:block;}
+/* ── ASTROLOGY INDEX ── */
+.astro-card{background:var(--card);border-radius:10px;padding:0;margin-bottom:8px;border-left:3px solid var(--border);transition:border-color 0.2s;overflow:hidden;}
+.astro-card:hover{border-left-color:var(--border-gold);}
+.astro-card.open{border-left-color:var(--gold);}
+.astro-card-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;gap:10px;}
+.astro-card-glyph{font-size:1.1rem;color:var(--gold);flex-shrink:0;}
+.astro-card-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text);font-weight:400;flex:1;}
+.astro-card-arrow{font-size:0.6rem;color:var(--text-light);letter-spacing:0.08em;transition:transform 0.2s;flex-shrink:0;}
+.astro-card.open .astro-card-arrow{transform:rotate(180deg);}
+.astro-card-body{display:none;padding:0 16px 16px;font-size:0.79rem;color:var(--text-dim);line-height:1.85;}
+.astro-card.open .astro-card-body{display:block;}
+.astro-card-body p{margin-bottom:10px;}
+.astro-card-body p:last-child{margin-bottom:0;}
+.astro-card-body strong{color:var(--text);}
+.astro-card-body .astro-andie{background:var(--green-dark);border-radius:8px;padding:10px 14px;margin-top:10px;border-left:2px solid var(--gold);}
+.astro-card-body .astro-andie strong{color:var(--gold-light);}
 .today-card{background:var(--card);border-radius:14px;padding:22px 24px;margin-bottom:24px;border-left:3px solid var(--crimson);box-shadow:0 2px 16px var(--shadow);}
 .tc-eyebrow{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--crimson-light);margin-bottom:6px;}
 .tc-date{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:var(--text);margin-bottom:2px;line-height:1.1;}
@@ -192,6 +228,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 </style>
 </head>
 <body>
+<div class="top-header">
+  <div>
+    <div class="top-header-name"><em>Andie's</em> Vedic Life Navigation Planner</div>
+    <div class="top-header-sub">Jyotish · Lahiri Ayanamsha · Whole Sign Houses · June 2026 – July 2027</div>
+  </div>
+  <button class="top-today-btn" onclick="goToday()">✦ Today</button>
+</div>
+<div class="month-nav-bar" id="topMonthNav"></div>
 <div class="outer">
 <aside class="sidebar">
   <div class="sb-brand">✦ EAUCO</div>
@@ -706,9 +750,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <div class="section-heading">Your Chart as a Story</div>
     <p style="font-size:0.8rem;color:var(--text-light);line-height:1.8;margin-bottom:24px;">You said you've never had your chart read. So instead of a glossary — here's the story your chart is telling. Read it once and then watch it play out in the months above.</p>
 
-    <div class="journey-chapter">
-      <div class="jc-num">Chapter One</div>
-      <div class="jc-title">Who You Are When You Walk Into a Room</div>
+    <div class="journey-chapter open">
+      <button class="jc-toggle" onclick="toggleChapter(this.closest('.journey-chapter'))">
+        <div><div class="jc-num">Chapter One</div><div class="jc-title">Who You Are When You Walk Into a Room</div></div>
+        <span class="jc-toggle-arrow">▼</span>
+      </button>
       <div class="jc-body">
         <p>The first thing to understand about your chart is your <strong style="color:var(--text)">Rising sign</strong> — called the Lagna in Vedic astrology. It's the sign that was rising on the eastern horizon the exact moment you were born at 4:35 AM in Afton, Wyoming. This sign shapes your physical presence, how you arrive in a room, and the lens through which every planet in your chart expresses itself.</p>
         <p>Yours is <strong style="color:var(--text)">Gemini</strong>, at 26°29' — specifically in a nakshatra called <strong style="color:var(--text)">Punarvasu</strong>. Nakshatras are like a 27-section zoom lens inside each zodiac sign — more precise than just knowing your sign. Punarvasu means "the return of goodness" — the renewal of light after difficulty. Its symbol is a quiver of arrows. People born into Punarvasu carry a quality of deep warmth and safety that others feel without knowing why. They restore things. They bring people back to what is good.</p>
@@ -719,8 +765,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
 
     <div class="journey-chapter">
-      <div class="jc-num">Chapter Two</div>
-      <div class="jc-title">What You Were Built to Do in the World</div>
+      <button class="jc-toggle" onclick="toggleChapter(this.closest('.journey-chapter'))">
+        <div><div class="jc-num">Chapter Two</div><div class="jc-title">What You Were Built to Do in the World</div></div>
+        <span class="jc-toggle-arrow">▼</span>
+      </button>
       <div class="jc-body">
         <p>The 2nd house in your chart governs speech, self-worth, material resources, and what you carry as inherent value. In Vedic astrology with Whole Sign Houses and Gemini Rising, your 2nd house is <strong style="color:var(--text)">Cancer</strong>. And in Cancer, you have three extraordinary planets:</p>
         <div class="jc-planet-row">
@@ -736,8 +784,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
 
     <div class="journey-chapter">
-      <div class="jc-num">Chapter Three</div>
-      <div class="jc-title">The Interior: Your Emotional World and Creative Life</div>
+      <button class="jc-toggle" onclick="toggleChapter(this.closest('.journey-chapter'))">
+        <div><div class="jc-num">Chapter Three</div><div class="jc-title">The Interior: Your Emotional World and Creative Life</div></div>
+        <span class="jc-toggle-arrow">▼</span>
+      </button>
       <div class="jc-body">
         <p>Your <strong style="color:var(--text)">Moon</strong> is the planet of your emotional world, your inner life, your instincts. In Vedic astrology, the Moon is often considered the most personal planet — more revealing than the Sun about who you actually are on the inside.</p>
         <p>Your Moon is in <strong style="color:var(--text)">Libra 13°, in Swati nakshatra, in your 5th house</strong> — the house of creativity, joy, romance, and children. Swati is ruled by Vayu — the wind god. The symbol is a single blade of grass bending in the wind. It doesn't break. It doesn't resist. It moves with total independence and flexibility, rooted but not rigid. <strong style="color:var(--text)">Swati people cannot be contained</strong>. They need freedom of movement — physical, emotional, relational. A life that boxes them in will eventually lose them. This is not stubbornness. This is your emotional design.</p>
@@ -751,8 +801,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
 
     <div class="journey-chapter">
-      <div class="jc-num">Chapter Four</div>
-      <div class="jc-title">How You're Sustained · Voice, Community, and the Creative Channel</div>
+      <button class="jc-toggle" onclick="toggleChapter(this.closest('.journey-chapter'))">
+        <div><div class="jc-num">Chapter Four</div><div class="jc-title">How You're Sustained · Voice, Community, and the Creative Channel</div></div>
+        <span class="jc-toggle-arrow">▼</span>
+      </button>
       <div class="jc-body">
         <p>Mercury rules your entire chart (Gemini Rising). So where Mercury is placed tells you how your whole life navigates and expresses. Your Mercury is retrograde in Cancer in the 2nd house — which we covered. But there's a second layer: <strong style="color:var(--text)">Venus in Leo 16°, Purva Phalguni nakshatra, in your 3rd house</strong>.</p>
         <p>The 3rd house is the house of communication, voice, creative courage, siblings, and your immediate environment. Venus here means your voice is your art. The way you communicate — whether in speech, writing, or creative expression — has a quality of warmth and magnetism that Leo amplifies. <strong style="color:var(--text)">Purva Phalguni</strong> is ruled by Venus itself, so Venus is doubly Venusian here: beauty, creative pleasure, the sacred right to delight in what you make. One of this nakshatra's deepest teachings is that creative expression and genuine rest are not luxuries — they are part of your design.</p>
@@ -763,8 +815,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
 
     <div class="journey-chapter">
-      <div class="jc-num">Chapter Five</div>
-      <div class="jc-title">The Depth Current · Saturn, Mars, and the Work Beneath</div>
+      <button class="jc-toggle" onclick="toggleChapter(this.closest('.journey-chapter'))">
+        <div><div class="jc-num">Chapter Five</div><div class="jc-title">The Depth Current · Saturn, Mars, and the Work Beneath</div></div>
+        <span class="jc-toggle-arrow">▼</span>
+      </button>
       <div class="jc-body">
         <p>Your <strong style="color:var(--text)">Saturn sits in Taurus 15°, Rohini nakshatra, in your 12th house</strong> — the house of liberation, solitude, hidden realms, and what must be released in order to grow. Saturn in the 12th is your most private placement: its discipline and structure operate in the interior, the unseen, the behind-the-scenes. People may not witness your most significant personal work — but it is always happening.</p>
         <p>The 12th house also governs foreign lands, long journeys away from home, and unexpected freedom through departure. Saturn here may bring experiences of working or living far from where you started — and discovering something essential about yourself in those distant places. There is a quality of earned solitude in your chart: time alone is not wasted time. It is where your deepest building happens.</p>
@@ -775,8 +829,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
 
     <div class="journey-chapter">
-      <div class="jc-num">Chapter Six</div>
-      <div class="jc-title">The Timing System · How the Chart Knows When</div>
+      <button class="jc-toggle" onclick="toggleChapter(this.closest('.journey-chapter'))">
+        <div><div class="jc-num">Chapter Six</div><div class="jc-title">The Timing System · How the Chart Knows When</div></div>
+        <span class="jc-toggle-arrow">▼</span>
+      </button>
       <div class="jc-body">
         <p>Western astrology uses transits — where planets are right now — to time events. Vedic astrology adds a second system called the <strong style="color:var(--text)">Vimshottari Dasha</strong>: a 120-year cycle of planetary periods, each planet governing your life for a set number of years in turn. Right now, you are in the <strong style="color:var(--text)">Jupiter Mahadasha</strong> — Jupiter's period runs from 2013 to 2029. 16 years of Jupiter governing your life chapter.</p>
         <p>Jupiter, as we established, is exalted in your 2nd house of speech and self-worth. This means your entire arc since age 9 has been under Jupiter's blessing — shaping your voice, your worth, your belief in your own resources — even in the years that didn't look like it yet. The seeds were being planted. You are now in the chapter where the worth becomes visible.</p>
@@ -787,8 +843,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
 
     <div class="journey-chapter">
-      <div class="jc-num">Chapter Seven · The Bridge</div>
-      <div class="jc-title">Two Systems, One You — How Vedic and Western Layer</div>
+      <button class="jc-toggle" onclick="toggleChapter(this.closest('.journey-chapter'))">
+        <div><div class="jc-num">Chapter Seven · The Bridge</div><div class="jc-title">Two Systems, One You — How Vedic and Western Layer</div></div>
+        <span class="jc-toggle-arrow">▼</span>
+      </button>
       <div class="jc-body">
         <p>You have two charts: a <strong style="color:var(--text)">Vedic (sidereal) chart</strong> and a <strong style="color:var(--text)">Western (tropical) chart</strong>. They use different starting points for the zodiac — the Vedic system is fixed to the actual stars (corrected by ~24°), while the Western system is fixed to the seasons. Neither is wrong. They show different layers of the same person.</p>
         <p>Your Vedic chart: <strong style="color:var(--text)">Gemini Rising, Cancer 2nd stellium, Moon in 5th</strong>. Shows your spiritual purpose, your karma, the deep structural story of your soul's work — voice, worth, and creative joy.<br>Your Western chart: <strong style="color:var(--text)">Cancer Rising, Leo Sun, Scorpio Moon</strong>. Shows your psychological landscape, your personality expression, how you navigate the visible human world — warmth on the surface, fierce depth underneath.</p>
@@ -798,6 +856,146 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
       </div>
     </div>
   </div>
+
+  <div class="glyph-divider">✦ · ✦ · ✦</div>
+
+  <!-- ASTROLOGY INDEX -->
+  <div class="month-section" id="astro-index">
+    <div class="section-heading">Astrology Reference</div>
+    <p style="font-size:0.8rem;color:var(--text-light);line-height:1.8;margin-bottom:22px;">New to astrology or just want a refresher? Tap any card to expand it. These are the concepts behind everything in this planner.</p>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">✦</span>
+        <span class="astro-card-title">What is Vedic Astrology?</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>Astrology is a system built on the idea that the sky at the exact moment of your birth carries meaningful information about who you are and the life you came here to live. Astrologers map planet positions against the zodiac — a symbolic wheel of 12 signs — and interpret how those positions shape personality, relationships, timing, and soul direction.</p>
+        <p><strong>Vedic astrology (Jyotish)</strong> is the system used in this planner. It's the traditional astrology of India, thousands of years old. It uses the <em>sidereal zodiac</em> — anchored to the actual positions of the fixed stars in the sky. This is different from Western astrology, which uses the <em>tropical zodiac</em>, anchored to the seasons.</p>
+        <p>The two systems use the same planet names and sign names, but their calculations differ by about 24° (called the <strong>Ayanamsha</strong>). This is why your Vedic Rising sign (Gemini) differs from your Western Rising sign (Cancer) — same sky, different measurement system. Neither is wrong. They illuminate different layers of the same person.</p>
+        <p>This planner uses <strong>Lahiri Ayanamsha</strong> — the most widely used Vedic calculation, recognized by the Indian government — and <strong>Whole Sign Houses</strong>, the oldest house system in Vedic astrology.</p>
+        <div class="astro-andie"><strong>✦ In your planner:</strong> All planet positions in the sidebar are sidereal (Vedic). The Western Big Three section shows your tropical positions for comparison. The lunation dates (new moons, full moons) use tropical sign names but Vedic house assignments from your Gemini Rising.</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">↑</span>
+        <span class="astro-card-title">Rising Sign · The Lagna</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>The <strong>Rising sign (Lagna)</strong> is the zodiac sign that was on the eastern horizon at the exact moment and place you were born. Because the Earth rotates, a new sign rises every ~2 hours — which is why birth time matters so much. It's not your "personality" the way a Sun sign is. It's more like the body and lens your soul chose for this lifetime. Everything in the chart is colored by it.</p>
+        <p>In Vedic astrology, the Rising sign is considered the most important factor in the chart — even more important than the Sun sign. It determines your house system (which areas of life each sign governs), your chart ruler (which planet runs the show), and your overall physical constitution and approach to life.</p>
+        <div class="astro-andie"><strong>✦ Yours:</strong> Gemini Rising at 26°29' in Punarvasu nakshatra. Mercury is your chart ruler — so Mercury's sign, house, and condition shape the trajectory of your life more than any other planet. Mercury is retrograde in Cancer in your 2nd house. Your identity runs through your voice.</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">⌂</span>
+        <span class="astro-card-title">The 12 Houses</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>The 12 houses divide the birth chart into 12 areas of life. Each house governs a specific domain — and whichever zodiac sign occupies that house colors how you experience that area of life. In Whole Sign Houses, each house is exactly one zodiac sign. Your Rising sign is always the 1st house.</p>
+        <p><strong>1st house:</strong> Identity, physical body, how you present · <strong>2nd:</strong> Speech, self-worth, money, what you carry · <strong>3rd:</strong> Communication, voice, siblings, courage · <strong>4th:</strong> Home, mother, roots, inner foundation · <strong>5th:</strong> Creativity, romance, children, joy · <strong>6th:</strong> Health, daily work, service, enemies</p>
+        <p><strong>7th house:</strong> Partnership, marriage, open enemies · <strong>8th:</strong> Transformation, shared resources, what's hidden · <strong>9th:</strong> Dharma, philosophy, teachers, higher learning · <strong>10th:</strong> Career, public life, reputation, father · <strong>11th:</strong> Income, community, social networks, desires fulfilled · <strong>12th:</strong> Liberation, solitude, foreign lands, what must be released</p>
+        <div class="astro-andie"><strong>✦ Yours (Gemini Rising):</strong> 1st Gemini · 2nd Cancer · 3rd Leo · 4th Virgo · 5th Libra · 6th Scorpio · 7th Sagittarius · 8th Capricorn · 9th Aquarius · 10th Pisces · 11th Aries · 12th Taurus</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">☽</span>
+        <span class="astro-card-title">The 9 Planets (Grahas)</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>Vedic astrology uses 9 planets (called Grahas — meaning "graspers," because they grasp our attention and energy). Each governs a domain of life:</p>
+        <p><strong>☉ Sun</strong> — soul, identity, father, authority, career visibility<br><strong>☽ Moon</strong> — mind, emotions, mother, instincts, the body<br><strong>☿ Mercury</strong> — communication, intellect, trade, nervous system<br><strong>♀ Venus</strong> — beauty, love, pleasure, creativity, wealth<br><strong>♂ Mars</strong> — action, drive, courage, conflict, physical energy<br><strong>♃ Jupiter</strong> — wisdom, grace, expansion, teachers, children, good fortune<br><strong>♄ Saturn</strong> — discipline, karma, structure, delays, longevity, hard work<br><strong>☊ Rahu (North Node)</strong> — desire, the future, unconventional paths, obsession, foreign things<br><strong>☋ Ketu (South Node)</strong> — past karma, spiritual gifts, detachment, liberation</p>
+        <p>A planet is strongest in its <strong>exaltation sign</strong> (where it functions at maximum power) and weakest in its <strong>debilitation sign</strong>. Planets can also be <strong>retrograde</strong> (appearing to move backward) — in Vedic astrology, retrograde planets are considered stronger in some ways, often internalized and working below the surface.</p>
+        <div class="astro-andie"><strong>✦ Your standout placement:</strong> Jupiter exalted in Cancer — the highest dignity Jupiter can hold — in your 2nd house of speech and self-worth. Once every 12 years Jupiter returns to Cancer. You were born with it there. It is running your Mahadasha. This combination is extraordinary.</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">✺</span>
+        <span class="astro-card-title">Nakshatras — The 27 Lunar Mansions</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>Nakshatras are 27 divisions of the zodiac, each spanning 13°20'. They're like a zoom lens inside each sign — more precise than just knowing your planet's sign. Each nakshatra has its own ruling planet, deity, symbol, and set of qualities.</p>
+        <p>They originated in ancient India as the Moon's "resting places" — the 27 nights it takes for the Moon to travel around the zodiac. Each night the Moon rests in a different nakshatra, which is why nakshatras are especially important for emotional, instinctive, and timing-based readings.</p>
+        <p>In this planner, every planet's nakshatra is listed next to its sign. The Rising nakshatra is particularly significant — it adds a specific quality and story to your Rising sign's energy.</p>
+        <div class="astro-andie"><strong>✦ Yours to know:</strong><br>
+        <strong>Punarvasu Rising</strong> — "The Return of the Light." Jupiter-ruled. You restore goodness. People feel held around you.<br>
+        <strong>Swati Moon</strong> — "The Independent One." Rahu-ruled. You are the wind: free, impossible to contain.<br>
+        <strong>Ashlesha Sun + Jupiter</strong> — "The Entwiner." Mercury-ruled. Deep, penetrating intelligence that sees beneath surfaces.<br>
+        <strong>Chitra Ketu</strong> — "The Brilliant Star." Mars-ruled. Past-life mastery of beautiful, precise craftsmanship. This is in your hands.</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">⧗</span>
+        <span class="astro-card-title">Dashas — The Timing System</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>The <strong>Vimshottari Dasha</strong> system is one of Vedic astrology's most distinctive features — a 120-year cycle of planetary periods that determine which planet governs your life during a given span of years. Unlike transits (where you wait for a planet to visit), the dasha system runs on an internal clock set by the Moon's nakshatra at your birth.</p>
+        <p>There are major periods (<strong>Mahadashas</strong>) that last many years (the Sun's period is 6 years; Jupiter's is 16 years; Saturn's is 19 years), and within each major period there are shorter sub-periods (<strong>Antardashas</strong>) that each run for months to a couple of years.</p>
+        <p>The planet running your dasha acts like the CEO of your life during that time — its nature, house, and condition in your chart shape everything that period brings. A well-placed planet running a dasha brings ease, recognition, and growth in its domains. A challenged planet brings lessons.</p>
+        <div class="astro-andie"><strong>✦ Yours right now:</strong> Jupiter Mahadasha runs 2013–2029 (16 years). Jupiter is exalted in your 2nd house — so this entire era is shaped by voice, worth, wisdom, and abundance. Current sub-period: <strong>Jupiter–Mars</strong> (until Nov 2026) = disciplined physical mastery channeling Jupiter's exalted worth. The crane is this antardasha made literal. Next: <strong>Jupiter–Rahu</strong> (Nov 2026–Feb 2029) = community expansion, unconventional income, accelerating network growth.</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">☊</span>
+        <span class="astro-card-title">Rahu &amp; Ketu — The Nodes</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p><strong>Rahu (North Node)</strong> and <strong>Ketu (South Node)</strong> are shadow planets — they are not physical bodies but the two points where the Moon's orbit intersects the Sun's path. They are always exactly opposite each other in the chart and are always retrograde (moving backward through the zodiac).</p>
+        <p><strong>Ketu</strong> represents where you've already been — past-life mastery, gifts that feel innate, things that come easily but may feel hollow or uninteresting because they're already known. Ketu placements often describe skills and wisdom that feel "already inside you."</p>
+        <p><strong>Rahu</strong> represents where you're going — the evolutionary edge of this lifetime, what you're here to develop and experience that you haven't mastered before. Rahu placements feel urgent, magnetizing, slightly overwhelming. They describe what pulls you forward even when it's uncomfortable.</p>
+        <div class="astro-andie"><strong>✦ Yours:</strong> Ketu in the 5th house (Libra, Chitra) = past-life creative and craftsmanship mastery. Making things precisely and beautifully is already in you from before this life. Rahu in the 11th house (Aries, Ashwini) = your soul is evolving toward community, income, and fulfillment of desires through bold, pioneering collective work. The axis: use your innate creative gifts (5th) to build something that expands your community and income (11th).</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">◐</span>
+        <span class="astro-card-title">New Moons &amp; Full Moons</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>The lunar cycle runs approximately 29.5 days. <strong>New Moons</strong> occur when the Sun and Moon are in the same sign — a moment of beginnings, planting intentions, and starting new chapters. <strong>Full Moons</strong> occur when the Sun and Moon are in opposite signs — a moment of illumination, completion, and things coming to light that were in the dark.</p>
+        <p>In this planner, the <strong>sign of the new or full moon tells us which house</strong> it activates for you (based on your Rising sign). When a lunation lands in your 2nd house, for example, it seeds or illuminates something about your speech, worth, or resources.</p>
+        <p>New Moons are especially important for setting intentions — the seed planted at a new moon grows over the following six months and completes at the corresponding full moon. Planting deliberately matters.</p>
+        <div class="astro-andie"><strong>✦ The standout lunation of your year:</strong> New Moon in Libra on October 20, 2026 — lands in your 5th house on your natal Moon and Ketu. The most personally significant new moon of the planner year. What creative or romantic chapter begins then is deeply personal.</div>
+      </div>
+    </div>
+
+    <div class="astro-card" onclick="toggleAstro(this)">
+      <div class="astro-card-header">
+        <span class="astro-card-glyph">♃</span>
+        <span class="astro-card-title">Transits — Planets Moving Through Your Chart</span>
+        <span class="astro-card-arrow">▼ more</span>
+      </div>
+      <div class="astro-card-body">
+        <p>Your birth chart is fixed — it's a snapshot of where the planets were when you were born. But the planets keep moving. <strong>Transits</strong> are the current positions of the planets in the sky, and when a transiting planet passes through a particular house in your chart, it activates the themes of that house.</p>
+        <p>Slower planets (Jupiter, Saturn, Rahu/Ketu) have the biggest impact because they spend months or years in each sign. Faster planets (Sun, Moon, Mercury, Venus, Mars) move quickly and bring shorter, more subtle activations.</p>
+        <p>The most significant transit of 2026 is <strong>Jupiter transiting Cancer</strong> (your 2nd house) in exaltation — a once-in-12-years activation of the house of voice and self-worth, by the planet that rules your entire Mahadasha, in its highest-functioning sign. This is not a small thing. The crane happened during this transit.</p>
+        <div class="astro-andie"><strong>✦ Watch for:</strong> When Jupiter moves into Leo (your 3rd house) in August 2026, the creative voice chapter opens and Jupiter meets your natal Venus. When Jupiter enters Virgo (your 4th house) in 2027, the foundation chapter deepens. Every time a new moon or planet moves through Cancer — your 2nd house — you'll feel it personally.</div>
+      </div>
+    </div>
+
+  </div>
+
 </main>
 </div>
 
@@ -1041,15 +1239,24 @@ function buildNav(){
   MONTHS.forEach(([y,m,label])=>h+='<button class="month-nav-btn" onclick="goMonth('+y+','+m+')">'+label+'</button>');
   h+='<button class="month-nav-btn" onclick="goIndex()">✦ Chart Glossary</button>';
   document.getElementById('monthNav').innerHTML=h;
+  // top bar
+  let t='';
+  MONTHS.forEach(([y,m,label])=>t+='<button onclick="goMonth('+y+','+m+')">'+label+'</button>');
+  t+='<button onclick="goIndex()">✦ Chart Story</button>';
+  t+='<button onclick="goAstroIndex()">✺ Astrology Index</button>';
+  document.getElementById('topMonthNav').innerHTML=t;
 }
 function goMonth(y,m){document.getElementById('month-'+y+'-'+m)?.scrollIntoView({behavior:'smooth',block:'start'});}
 function goIndex(){document.getElementById('month-index')?.scrollIntoView({behavior:'smooth',block:'start'});}
+function goAstroIndex(){document.getElementById('astro-index')?.scrollIntoView({behavior:'smooth',block:'start'});}
 function goToday(){
   const ds=getTodayStr();const[y,m]=ds.split('-');
   const el=document.getElementById('month-'+y+'-'+parseInt(m));
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
   else document.getElementById('mainContent').scrollIntoView({behavior:'smooth'});
 }
+function toggleChapter(el){el.classList.toggle('open');}
+function toggleAstro(el){el.classList.toggle('open');}
 
 function fireworks(){
   const colors=['#7A1823','#C09030','#D4AA55','#1E3D25','#A63545','#EDE5D5','#C87080'];
