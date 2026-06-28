@@ -225,6 +225,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
 .glyph-divider{text-align:center;color:var(--text-light);font-size:0.7rem;letter-spacing:0.2em;margin:24px 0;}
 .section-heading{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--text);margin-bottom:18px;}
+/* ── LEARN THE WORDS ── */
+.terms-section{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+.terms-label{font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;}
+.terms-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.term-item{display:flex;flex-direction:column;gap:0;}
+.term-chip{background:var(--green-dark);border:1px solid var(--border-gold);border-radius:16px;padding:4px 11px;font-size:0.67rem;color:var(--gold);cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif;text-align:left;white-space:nowrap;}
+.term-chip:hover{background:rgba(192,144,48,0.12);border-color:var(--gold);}
+.term-chip.open{background:rgba(192,144,48,0.12);border-color:var(--gold);border-radius:16px 16px 0 0;}
+.term-detail{display:none;background:rgba(192,144,48,0.07);border:1px solid var(--border-gold);border-top:none;border-radius:0 8px 8px 8px;padding:9px 12px;font-size:0.72rem;color:var(--text-dim);line-height:1.7;max-width:340px;}
+.term-detail.open{display:block;}
 </style>
 </head>
 <body>
@@ -288,6 +298,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <div class="tc-planet" id="tc-planet">—</div>
     <div class="tc-body" id="tc-body">—</div>
     <div class="tc-tip" id="tc-tip"></div>
+    <div id="tc-terms"></div>
     <div class="tc-moon" id="tc-moon"></div>
   </div>
 
@@ -1021,6 +1032,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <div id="md-kd-banner"></div>
     <div class="modal-body" id="md-body">—</div>
     <div class="modal-moon" id="md-moon"></div>
+    <div id="md-terms" style="padding:0 0 4px"></div>
     <div class="modal-section">
       <div class="modal-section-label">How are you feeling?</div>
       <div class="mood-row">
@@ -1135,6 +1147,88 @@ const DAY_GUIDES={
   '2026-07-01':{theme:'Mercury Day · July Opens · Voice Active',body:'July begins. Mercury in your 2nd house (chart ruler in the house of speech): your voice is active and processing. What do you know about where you\'re going — what you want to say, earn, or build — that you haven\'t put into words yet? July moves from worth (2nd) toward creative voice (3rd). Your Mercury Rx is thinking it through.'}
 };
 
+// ── PLAIN-ENGLISH GLOSSARY ────────────────────────────────────────────────
+const MINI_GLOSSARY={
+  'nakshatra':{label:'Nakshatra',def:'A "zoom lens" inside your zodiac sign. There are 27 nakshatras, each covering 13° of the zodiac — more specific than just your sign. They give your planets a distinct story and personality beyond simply "Cancer" or "Gemini."'},
+  'mahadasha':{label:'Mahadasha (Major Period)',def:'The big planetary chapter running your life. You\'re in Jupiter Mahadasha (2013–2029) — 16 years of Jupiter\'s wisdom, expansion, and good fortune shaping everything. Think of it like the overarching season of your life.'},
+  'antardasha':{label:'Antardasha (Sub-Period)',def:'A shorter chapter nested inside the major period — like episodes within a season. Right now: Jupiter–Mars (until Nov 2026). After that: Jupiter–Rahu (Nov 2026–Feb 2029). Each sub-period has its own distinct flavor.'},
+  'exalted':{label:'Exalted',def:'When a planet is in the ONE sign where it works at absolute maximum strength. Jupiter is exalted in Cancer — this is the best, most powerful version of Jupiter possible. Like an expert in their perfect environment.'},
+  'stellium':{label:'Stellium',def:'Three or more planets clustered in the same house. Your 2nd house holds Sun, Mercury Rx, and exalted Jupiter — a rare concentration of energy all pointing at the same life area: your voice, self-worth, and resources.'},
+  'chart ruler':{label:'Chart Ruler',def:'The planet that rules your Rising sign — and therefore oversees the direction of your whole life. You\'re Gemini Rising, so Mercury is your chart ruler. How Mercury is doing shapes literally everything. Your chart ruler in the 2nd house = your voice and worth are your life\'s direction.'},
+  'rising sign':{label:'Rising Sign',def:'The zodiac sign that was on the eastern horizon the exact moment you were born. In Vedic astrology, it\'s the most important point — even more than your Sun sign. It determines your chart ruler, all your house placements, and how you move through life. Yours: Gemini (Vedic) / Cancer (Western).'},
+  'transit':{label:'Transit',def:'A planet currently moving through the sky and passing through a house in your birth chart, activating that life area. Right now Jupiter is transiting Cancer (your 2nd house) in exaltation — the biggest transit of your year.'},
+  '2nd house':{label:'2nd House',def:'The house of speech, self-worth, and material resources. In Vedic astrology it governs what you say, what you believe you\'re worth, and what you earn. Your most loaded house: Sun + Mercury Rx + exalted Jupiter all live here. Your voice and resources are your greatest asset.'},
+  '3rd house':{label:'3rd House',def:'The house of communication, voice, creative courage, and your immediate world. Venus lives here in your chart — which means your voice is your art. This house is also about siblings, short trips, and the things you say and write every day.'},
+  '5th house':{label:'5th House',def:'The house of creativity, joy, romance, and what genuinely lights you up. Your Moon lives here — meaning your emotional world is rooted in creative expression. You feel most alive making things, being in joy, and connecting from a place of delight.'},
+  '6th house':{label:'6th House',def:'The house of health, daily practice, and service. What you do consistently with your body and time. Your 6th house is Scorpio — which means your daily rituals work best with real intensity and depth, not surface-level routine.'},
+  '9th house':{label:'9th House',def:'The house of dharma, philosophy, higher truth, and action guided by belief. Mars lives here — meaning your drive and courage are directed by what you genuinely believe is right, not just what\'s convenient or expected.'},
+  '11th house':{label:'11th House',def:'The house of community, income, social network, and the fulfillment of desires. Rahu lives here — it\'s your soul\'s evolutionary edge. Your greatest growth and gains come through building community and showing up in your network.'},
+  '12th house':{label:'12th House',def:'The house of solitude, liberation, and what happens away from public view. Saturn lives here — meaning your most significant personal work happens privately, in the interior. What you build alone is always growing into something real.'},
+  'sun':{label:'Sun (☉)',def:'The planet of soul expression, identity, and where you want to be recognized and seen. Your Sun is in Cancer in the 2nd house — your identity expresses through your voice and what you believe you\'re worth.'},
+  'moon':{label:'Moon (☽)',def:'In Vedic astrology, often considered even more important than the Sun. The Moon governs your mind, emotions, and inner world. Your Moon is in Libra in the 5th house — your emotional life lives in creative joy and expression.'},
+  'mercury rx':{label:'Mercury Retrograde (☿)',def:'Your Mercury appears to move backward in its sign (Cancer). In Vedic astrology this isn\'t a flaw — retrograde planets are internalized and often more powerful. For you: you feel the truth before you find words for it. Process deeply first, then speak. Your best words are never your fastest ones.'},
+  'venus':{label:'Venus (♀)',def:'The planet of beauty, love, creativity, and what we attract. Your Venus is in Leo in the 3rd house — your voice and creative expression have a warm, magnetic quality. Communication is your art form.'},
+  'mars':{label:'Mars (♂)',def:'The planet of action, drive, and physical energy. Your Mars is in Aquarius in the 9th house — your action is guided by philosophy and genuine belief, not just ambition. You do things because they\'re right, not just because they\'re useful.'},
+  'jupiter':{label:'Jupiter (♃)',def:'The planet of wisdom, expansion, grace, and good fortune. Your Jupiter is exalted in Cancer in the 2nd house — the strongest possible Jupiter placement for growing what you earn and believe you\'re worth. Also your Mahadasha lord — running your life chapter until 2029.'},
+  'saturn':{label:'Saturn (♄)',def:'The planet of discipline, structure, and earned mastery — things built slowly and permanently. Your Saturn is in Taurus in the 12th house. It does its most significant work behind the scenes, privately. What you build in solitude has more permanence than it appears.'},
+  'rahu':{label:'Rahu — North Node (☊)',def:'Where your soul is evolving TOWARD in this lifetime. Think of it as your growth edge — it feels magnetic and sometimes overwhelming because it\'s new territory. In your 11th house (community, income, gains), Rahu pulls you toward building networks and abundance.'},
+  'ketu':{label:'Ketu — South Node (☋)',def:'Past-life mastery you already carry. Skills that feel innate — not learned in this life. In your 5th house (creativity, craftsmanship), Ketu means precision and beautiful making feel natural to you because they already were, from before this life.'},
+  'punarvasu':{label:'Punarvasu',def:'Your Rising nakshatra. Means "the return of the light" or "the quiver of arrows." Jupiter-ruled. People with Punarvasu Rising carry a warmth that restores others — people feel safe and brought back to what\'s good around you. The crane is literally a Punarvasu act: lifting, carrying, helping things find their place.'},
+  'swati':{label:'Swati',def:'Your Moon nakshatra. Means "the independent one." Rahu-ruled. Symbol: a blade of grass bending in the wind — flexible, impossible to break because it moves with pressure instead of against it. You cannot be emotionally contained. You need genuine freedom. That\'s not a flaw — it\'s your design.'},
+  'ashlesha':{label:'Ashlesha',def:'Your Sun + Jupiter nakshatra. Means "the entwiner." Serpent energy — deep, penetrating intelligence that sees what\'s actually happening beneath what people show. You read situations, people, and value exchanges with unusual accuracy.'},
+  'chitra':{label:'Chitra',def:'Ketu\'s nakshatra in your 5th house. Means "the brilliant star" — the cosmic architect and jewel-cutter. Mars-ruled. Past-life mastery of precision and beautiful making. The skill in your hands for craftsmanship — that feeling of knowing exactly how to move in physical space — that\'s Chitra.'},
+  'shatabishak':{label:'Shatabishak',def:'Mars\'s nakshatra in your 9th house. Means "100 healers" — those who work outside conventional methods in service of something real. Your most effective action is always action taken from genuine belief, not from what looks normal or expected.'},
+  'pushya':{label:'Pushya',def:'Mercury\'s nakshatra in your 2nd house. Means "the nourisher." Saturn-ruled. When you speak from authentic knowledge, people feel genuinely fed and cared for — not just informed. Your words carry a quality of real sustenance. More powerful than you know.'},
+  'rohini':{label:'Rohini',def:'Saturn\'s nakshatra in your 12th house. The most fertile nakshatra in the zodiac — the Moon\'s favorite resting place. Even in your most private and solitary work, there is growth happening. What you tend in hidden spaces always blooms eventually.'},
+  'ashwini':{label:'Ashwini',def:'Rahu\'s nakshatra in your 11th house. Means "the swift ones" or "the divine physicians." Things in your community and income channels can arrive with surprising speed once the channel opens. Rahu in Ashwini: the gains come fast when they come.'},
+  'purva phalguni':{label:'Purva Phalguni',def:'Venus\'s nakshatra in your 3rd house. Means "the star of rest and creativity." Venus-ruled twice (planet + nakshatra). Creative expression feels effortless and magnetic for you. Rest and genuine delight are productive — not indulgent. Your voice is most magnetic when you\'re speaking from joy.'}
+};
+
+// Which glossary terms to show per day of week (planet day)
+const TERMS_BY_DOW={
+  0:['sun','ashlesha','2nd house'],
+  1:['moon','swati','5th house'],
+  2:['mars','shatabishak','9th house'],
+  3:['mercury rx','chart ruler','pushya'],
+  4:['mahadasha','exalted','antardasha'],
+  5:['venus','purva phalguni','3rd house'],
+  6:['saturn','rohini','12th house']
+};
+
+// Which glossary terms pair with each rotating daily tip (parallel to DAILY_TIPS)
+const DAILY_TIP_TERMS=[
+  ['rising sign','nakshatra','punarvasu'],
+  ['2nd house','exalted','stellium'],
+  ['5th house','swati','moon'],
+  ['ketu','nakshatra','chitra'],
+  ['rahu','11th house','ashwini'],
+  ['venus','3rd house','purva phalguni'],
+  ['jupiter','exalted','2nd house'],
+  ['saturn','12th house','rohini'],
+  ['mercury rx','chart ruler','2nd house'],
+  ['ashlesha','nakshatra','2nd house'],
+  ['swati','nakshatra','5th house'],
+  ['shatabishak','nakshatra','9th house'],
+  ['pushya','nakshatra','mercury rx'],
+  ['rohini','nakshatra','12th house'],
+  ['ashwini','nakshatra','11th house'],
+  ['chitra','nakshatra','5th house'],
+  ['punarvasu','rising sign','nakshatra'],
+  ['3rd house','venus','transit'],
+  ['9th house','mars','transit'],
+  ['12th house','saturn','transit'],
+  ['rising sign','mercury rx','chart ruler'],
+  ['antardasha','rahu','11th house'],
+  ['sun','2nd house','transit'],
+  ['antardasha','mars','6th house'],
+  ['transit','2nd house','5th house'],
+  ['stellium','2nd house','exalted'],
+  ['rising sign','punarvasu','chart ruler'],
+  ['6th house','mars','nakshatra'],
+  ['saturn','12th house','rising sign'],
+  ['mahadasha','jupiter','exalted']
+];
+
 const MONTHS=[[2026,6,'June 2026'],[2026,7,'July 2026'],[2026,8,'August 2026'],[2026,9,'September 2026'],[2026,10,'October 2026'],[2026,11,'November 2026'],[2026,12,'December 2026'],[2027,1,'January 2027'],[2027,2,'February 2027'],[2027,3,'March 2027'],[2027,4,'April 2027'],[2027,5,'May 2027'],[2027,6,'June 2027'],[2027,7,'July 2027']];
 
 function moonPhase(ds){
@@ -1143,10 +1237,14 @@ function moonPhase(ds){
   for(let i=NM_ANCHORS.length-1;i>=0;i--){if(new Date(NM_ANCHORS[i][0])<=date){ref=new Date(NM_ANCHORS[i][0]);refDeg=NM_ANCHORS[i][1];break;}}
   if(!ref){ref=new Date(NM_ANCHORS[0][0]);refDeg=NM_ANCHORS[0][1];}
   const days=(date-ref)/86400000;
-  const deg=((refDeg+days*13.176)%360+360)%360;
+  // Elongation: Moon gains 12.19034°/day on the Sun (synodic period = 29.53059 days)
+  const elongation=((days*12.19034)%360+360)%360;
+  // Moon's tropical degree for sign display
+  const moonDeg=((refDeg+days*13.176)%360+360)%360;
   const phases=[['🌑','New Moon'],['🌒','Waxing Crescent'],['🌓','First Quarter'],['🌔','Waxing Gibbous'],['🌕','Full Moon'],['🌖','Waning Gibbous'],['🌗','Last Quarter'],['🌘','Waning Crescent']];
   const signs=['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
-  return phases[Math.round(deg/360*8)%8][0]+' '+phases[Math.round(deg/360*8)%8][1]+' in '+signs[Math.floor(deg/30)];
+  const idx=Math.round(elongation/360*8)%8;
+  return phases[idx][0]+' '+phases[idx][1]+' in '+signs[Math.floor(moonDeg/30)];
 }
 
 function buildCal(year,month){
@@ -1179,6 +1277,31 @@ function buildCal(year,month){
 
 function getTodayStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 
+function buildTerms(terms,containerId){
+  const container=document.getElementById(containerId);
+  if(!container)return;
+  const valid=[...new Set(terms)].filter(t=>MINI_GLOSSARY[t]).slice(0,4);
+  if(!valid.length){container.innerHTML='';return;}
+  let h='<div class="terms-section"><div class="terms-label">✦ New to these words? Tap to learn</div><div class="terms-chips">';
+  valid.forEach(t=>{
+    const g=MINI_GLOSSARY[t];
+    h+='<div class="term-item"><button class="term-chip" onclick="toggleTerm(this)">'+g.label+' ▾</button>';
+    h+='<div class="term-detail">'+g.def+'</div></div>';
+  });
+  h+='</div></div>';
+  container.innerHTML=h;
+}
+
+function toggleTerm(chip){
+  const isOpen=chip.classList.contains('open');
+  const container=chip.closest('.terms-chips');
+  container.querySelectorAll('.term-chip.open').forEach(c=>{
+    c.classList.remove('open');
+    c.nextElementSibling.classList.remove('open');
+  });
+  if(!isOpen){chip.classList.add('open');chip.nextElementSibling.classList.add('open');}
+}
+
 function buildToday(){
   const d=new Date();const ds=getTodayStr();const dow=d.getDay();
   const pd=PLANET_DAYS[dow];const guide=DAY_GUIDES[ds];
@@ -1188,6 +1311,9 @@ function buildToday(){
   document.getElementById('tc-body').textContent=guide?guide.body:pd.body;
   document.getElementById('tc-tip').textContent='✦ '+DAILY_TIPS[tipIdx];
   document.getElementById('tc-moon').textContent=moonPhase(ds);
+  const tipTerms=DAILY_TIP_TERMS[tipIdx]||[];
+  const dowTerms=TERMS_BY_DOW[dow]||[];
+  buildTerms([...tipTerms,...dowTerms],'tc-terms');
   if(ds==='2026-08-04'||ds==='2027-08-04')fireworks();
 }
 
@@ -1203,6 +1329,7 @@ function openDay(ds){
   document.getElementById('md-kd-banner').innerHTML=kd?'<div class="kd-banner"><div class="kd-title">'+kd.title+'</div><div class="kd-desc">'+kd.body+'</div></div>':'';
   document.getElementById('md-body').textContent=guide?guide.body:pd.body;
   document.getElementById('md-moon').textContent=moonPhase(ds);
+  buildTerms(TERMS_BY_DOW[dow]||[],'md-terms');
   const todos=DOW_TODOS[dow];
   document.getElementById('md-todos').innerHTML=todos.map((t,i)=>{
     const checked=state['todo-'+ds+'-'+i];
